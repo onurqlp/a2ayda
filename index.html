@@ -1,0 +1,2206 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#173466" />
+  <meta name="description" content="AYDA A2 Video Tekrar Merkezi: Menschen A2.1 ve A2.2 için 24 ünite, kısa konu anlatımları, ana ders videoları ve konuşma/gramer destekleri." />
+  <meta property="og:title" content="AYDA A2 Video Tekrar Merkezi" />
+  <meta property="og:description" content="A2 konularını ünite ünite tekrar et." />
+  <title>AYDA A2 Video Tekrar Merkezi</title>
+
+  <style>
+    :root {
+      --navy:#173466;
+      --navy-2:#234078;
+      --navy-3:#10284e;
+      --blue:#4f75ad;
+      --blue-soft:#eaf1f9;
+      --bg:#f3f6fb;
+      --card:#ffffff;
+      --text:#172033;
+      --muted:#66748a;
+      --line:#dbe3ef;
+      --line-strong:#c5d3e5;
+      --gold:#cfa956;
+      --shadow:0 12px 34px rgba(24,52,102,.09);
+      --shadow-lg:0 20px 55px rgba(24,52,102,.14);
+      --topbar-h:72px;
+    }
+
+    * { box-sizing:border-box; }
+    html {
+      min-height:100%;
+      width:100%;
+      overflow-x:hidden !important;
+      overflow-y:auto !important;
+      scroll-behavior:smooth;
+      scrollbar-gutter:stable;
+      -webkit-text-size-adjust:100%;
+    }
+    body {
+      margin:0;
+      width:100%;
+      min-height:100vh;
+      min-height:100dvh;
+      height:auto !important;
+      overflow-x:hidden !important;
+      overflow-y:auto !important;
+      position:static !important;
+      touch-action:pan-y pinch-zoom;
+      overscroll-behavior-y:auto;
+      color:var(--text);
+      background:
+        radial-gradient(circle at 0 0, rgba(35,64,120,.09), transparent 30rem),
+        linear-gradient(180deg,#f8faff 0%,var(--bg) 100%);
+      font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
+      font-size:17px;
+      line-height:1.6;
+      -webkit-font-smoothing:antialiased;
+      text-rendering:optimizeLegibility;
+    }
+    a { color:inherit; text-decoration:none; }
+    button,input { font:inherit; }
+    button,a { -webkit-tap-highlight-color:transparent; }
+    img,iframe { max-width:100%; }
+    button { touch-action:manipulation; }
+
+    /* =========================
+       AYDA GİRİŞ — mevcut sistemle aynı ID'ler
+       ========================= */
+    #aydaLoginBox {
+      position:fixed;
+      inset:0;
+      z-index:999999;
+      display:grid;
+      place-items:center;
+      min-height:100dvh;
+      padding:max(20px,env(safe-area-inset-top))
+              max(20px,env(safe-area-inset-right))
+              max(20px,env(safe-area-inset-bottom))
+              max(20px,env(safe-area-inset-left));
+      overflow-y:auto;
+      background:
+        radial-gradient(circle at top left,rgba(35,64,120,.15),transparent 36%),
+        linear-gradient(180deg,#f8fbff 0%,#eef3fb 100%);
+      color:#1f2937;
+    }
+    .ayda-login-card {
+      width:min(100%,460px);
+      padding:32px;
+      border:1px solid var(--line);
+      border-radius:28px;
+      background:#fff;
+      box-shadow:0 22px 58px rgba(35,64,120,.18);
+    }
+    .ayda-login-logo {
+      width:62px;
+      height:62px;
+      display:grid;
+      place-items:center;
+      margin-bottom:18px;
+      border-radius:18px;
+      background:var(--navy-2);
+      color:#fff;
+      font-size:21px;
+      font-weight:950;
+    }
+    #aydaLoginBox h1 {
+      margin:0 0 9px;
+      color:#172b52;
+      font-size:27px;
+      line-height:1.18;
+      letter-spacing:-.03em;
+    }
+    #aydaLoginBox p {
+      margin:0 0 20px;
+      color:#69768a;
+      font-size:15px;
+      line-height:1.55;
+    }
+    .ayda-password-row {
+      display:flex;
+      gap:10px;
+    }
+    #aydaPasswordInput {
+      flex:1;
+      min-width:0;
+      min-height:54px;
+      padding:14px 16px;
+      border:1px solid var(--line);
+      border-radius:15px;
+      outline:none;
+      background:#fff;
+      color:var(--text);
+      font-size:16px;
+    }
+    #aydaPasswordInput:focus {
+      border-color:#7f9bc5;
+      box-shadow:0 0 0 4px rgba(35,64,120,.10);
+    }
+    .ayda-login-btn {
+      min-height:54px;
+      padding:0 20px;
+      border:0;
+      border-radius:15px;
+      background:var(--navy-2);
+      color:#fff;
+      font-weight:900;
+      cursor:pointer;
+    }
+    .ayda-login-btn:hover { background:#172b52; }
+    #aydaLoginMessage {
+      min-height:20px;
+      margin-top:12px;
+      color:#c62d2d;
+      font-size:14px;
+      font-weight:750;
+    }
+    #aydaProtectedContent {
+      display:none;
+      min-height:100vh;
+      min-height:100dvh;
+      overflow:visible !important;
+    }
+
+    /* =========================
+       GENEL LAYOUT
+       ========================= */
+    .container {
+      width:min(1240px,calc(100% - clamp(24px,4vw,56px)));
+      margin-inline:auto;
+    }
+
+    .topbar {
+      position:sticky;
+      top:0;
+      z-index:100;
+      min-height:var(--topbar-h);
+      border-bottom:1px solid rgba(219,227,239,.95);
+      background:rgba(248,251,255,.94);
+      backdrop-filter:blur(16px);
+    }
+    .topbar-inner {
+      min-height:var(--topbar-h);
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:16px;
+    }
+    .brand {
+      min-width:0;
+      display:flex;
+      align-items:center;
+      gap:12px;
+    }
+    .brand-logo {
+      width:44px;
+      height:44px;
+      flex:0 0 auto;
+      display:grid;
+      place-items:center;
+      border-radius:14px;
+      background:linear-gradient(145deg,var(--navy-2),var(--navy));
+      color:#fff;
+      font-size:15px;
+      font-weight:950;
+      box-shadow:0 8px 20px rgba(35,64,120,.17);
+    }
+    .brand-copy strong {
+      display:block;
+      color:#172b52;
+      font-size:15px;
+      line-height:1.2;
+    }
+    .brand-copy span {
+      display:block;
+      margin-top:3px;
+      color:#758298;
+      font-size:12px;
+    }
+    .nav {
+      display:flex;
+      align-items:center;
+      gap:6px;
+    }
+    .nav a {
+      padding:10px 13px;
+      border-radius:999px;
+      color:#5e708b;
+      font-size:13px;
+      font-weight:850;
+    }
+    .nav a:hover { background:#fff; color:var(--navy); }
+
+    .hero {
+      padding:clamp(18px,3vw,34px) 0 14px;
+    }
+    .hero-box {
+      position:relative;
+      overflow:hidden;
+      padding:clamp(28px,5vw,52px);
+      border-radius:30px;
+      color:#fff;
+      background:linear-gradient(135deg,#132e59 0%,#234078 60%,#315b99 100%);
+      box-shadow:var(--shadow-lg);
+    }
+    .hero-box::after {
+      content:"";
+      position:absolute;
+      width:420px;
+      height:420px;
+      right:-180px;
+      top:-190px;
+      border-radius:50%;
+      background:radial-gradient(circle,rgba(207,169,86,.33),transparent 68%);
+      pointer-events:none;
+    }
+    .kicker {
+      position:relative;
+      z-index:1;
+      display:inline-flex;
+      align-items:center;
+      padding:8px 12px;
+      border:1px solid rgba(255,255,255,.16);
+      border-radius:999px;
+      background:rgba(255,255,255,.08);
+      color:#e2ebf8;
+      font-size:11px;
+      font-weight:950;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+    }
+    .hero h1 {
+      position:relative;
+      z-index:1;
+      max-width:900px;
+      margin:17px 0 12px;
+      font-size:clamp(38px,5vw,62px);
+      line-height:1.02;
+      letter-spacing:-.045em;
+      text-wrap:balance;
+    }
+    .hero p {
+      position:relative;
+      z-index:1;
+      max-width:880px;
+      margin:0;
+      color:#dce7f7;
+      font-size:clamp(16px,1.45vw,19px);
+      line-height:1.65;
+    }
+    .notice {
+      position:relative;
+      z-index:1;
+      max-width:900px;
+      display:flex;
+      gap:11px;
+      margin-top:20px;
+      padding:15px 16px;
+      border:1px solid rgba(255,255,255,.15);
+      border-radius:15px;
+      background:rgba(255,255,255,.08);
+      color:#f6f8fc;
+      font-size:14px;
+      line-height:1.55;
+    }
+
+    .quick-links {
+      display:grid;
+      grid-template-columns:repeat(3,minmax(0,1fr));
+      gap:12px;
+      margin:16px 0 30px;
+    }
+    .quick-link {
+      min-width:0;
+      min-height:86px;
+      display:flex;
+      align-items:center;
+      gap:14px;
+      padding:16px 18px;
+      border:1px solid var(--line);
+      border-radius:18px;
+      background:#fff;
+      box-shadow:0 8px 24px rgba(35,64,120,.05);
+      transition:transform .16s ease,box-shadow .16s ease,border-color .16s ease;
+    }
+    .quick-link:hover {
+      transform:translateY(-2px);
+      border-color:var(--line-strong);
+      box-shadow:0 14px 30px rgba(35,64,120,.08);
+    }
+    .quick-icon {
+      width:48px;
+      height:48px;
+      flex:0 0 auto;
+      display:grid;
+      place-items:center;
+      border-radius:14px;
+      background:var(--blue-soft);
+      font-size:22px;
+    }
+    .quick-copy { min-width:0; flex:1; }
+    .quick-copy strong {
+      display:block;
+      color:#203a66;
+      font-size:16px;
+      line-height:1.25;
+    }
+    .quick-copy small {
+      display:block;
+      margin-top:4px;
+      color:#7b889b;
+      font-size:13px;
+      line-height:1.35;
+    }
+    .quick-arrow {
+      color:#7085a4;
+      font-size:18px;
+      font-weight:900;
+    }
+
+    /* =========================
+       ÜNİTELER
+       ========================= */
+    .units-hub {
+      width:min(100%,1080px);
+      margin-inline:auto;
+      padding:5px 0 20px;
+    }
+    .section-head {
+      display:flex;
+      align-items:flex-end;
+      justify-content:space-between;
+      gap:18px;
+      flex-wrap:wrap;
+      margin-bottom:16px;
+    }
+    .section-head h2 {
+      margin:0;
+      color:#172b52;
+      font-size:clamp(28px,3vw,36px);
+      letter-spacing:-.035em;
+    }
+    .section-head p {
+      margin:6px 0 0;
+      color:var(--muted);
+      font-size:15px;
+    }
+    .level-tabs {
+      display:flex;
+      gap:8px;
+      flex-wrap:wrap;
+    }
+    .level-tab {
+      min-height:46px;
+      padding:10px 17px;
+      border:1px solid var(--line);
+      border-radius:999px;
+      background:#fff;
+      color:#5d6e85;
+      font-size:14px;
+      font-weight:900;
+      cursor:pointer;
+    }
+    .level-tab:hover { border-color:#afc0d7; }
+    .level-tab.active {
+      border-color:var(--navy);
+      background:var(--navy);
+      color:#fff;
+    }
+
+    .level-divider {
+      margin:22px 0 10px;
+      padding:12px 4px 6px;
+      color:#6a7b93;
+      font-size:13px;
+      font-weight:950;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+    }
+    .unit-list {
+      display:block;
+    }
+    .unit-accordion {
+      position:relative;
+      margin-bottom:12px;
+      border:1px solid var(--line);
+      border-radius:20px;
+      background:#fff;
+      box-shadow:0 7px 22px rgba(35,64,120,.045);
+      overflow:visible;
+      scroll-margin-top:calc(var(--topbar-h) + 12px);
+    }
+    .unit-accordion.open {
+      border-color:#b8cae0;
+      box-shadow:0 16px 38px rgba(35,64,120,.09);
+    }
+    .unit-accordion-head {
+      width:100%;
+      min-height:98px;
+      display:flex;
+      align-items:center;
+      gap:16px;
+      padding:18px 20px;
+      border:0;
+      border-radius:20px;
+      background:#fff;
+      color:inherit;
+      text-align:left;
+      cursor:pointer;
+    }
+    .unit-accordion-head:hover { background:#fbfcfe; }
+    .unit-accordion-head:focus-visible {
+      outline:3px solid #8eadd8;
+      outline-offset:3px;
+    }
+    .unit-accordion.open .unit-accordion-head {
+      position:sticky;
+      top:calc(var(--topbar-h) + 8px);
+      z-index:30;
+      border-radius:16px;
+      border:1px solid #d2dce9;
+      box-shadow:0 8px 20px rgba(35,64,120,.08);
+      background:rgba(255,255,255,.98);
+      backdrop-filter:blur(14px);
+    }
+    .unit-index {
+      width:58px;
+      height:58px;
+      flex:0 0 auto;
+      display:grid;
+      place-items:center;
+      border-radius:17px;
+      background:#edf3f9;
+      color:#31527f;
+      font-size:17px;
+      font-weight:950;
+    }
+    .unit-accordion.open .unit-index {
+      background:var(--navy);
+      color:#fff;
+    }
+    .unit-head-copy {
+      min-width:0;
+      flex:1;
+    }
+    .unit-head-copy > span {
+      display:block;
+      color:#7c8da5;
+      font-size:12px;
+      font-weight:950;
+      letter-spacing:.07em;
+      text-transform:uppercase;
+    }
+    .unit-head-copy strong {
+      display:block;
+      margin-top:4px;
+      color:#1e3862;
+      font-size:clamp(18px,2vw,22px);
+      line-height:1.25;
+      letter-spacing:-.015em;
+      overflow-wrap:anywhere;
+    }
+    .unit-head-copy small {
+      display:block;
+      margin-top:5px;
+      color:#6f7f94;
+      font-size:14px;
+      line-height:1.4;
+      overflow-wrap:anywhere;
+    }
+    .unit-chevron {
+      width:42px;
+      height:42px;
+      flex:0 0 auto;
+      display:grid;
+      place-items:center;
+      border-radius:12px;
+      background:#f2f5f9;
+      color:#6e8098;
+      font-size:18px;
+      transition:transform .18s ease;
+    }
+    .unit-accordion.open .unit-chevron { transform:rotate(180deg); }
+
+    .unit-accordion-body {
+      display:none;
+      padding:18px;
+      border-top:1px solid #edf1f6;
+      border-radius:0 0 20px 20px;
+      background:#f8fafc;
+    }
+    .unit-accordion.open .unit-accordion-body { display:block; }
+
+    .lesson-brief {
+      padding:clamp(20px,3vw,28px);
+      border:1px solid #d7e2ef;
+      border-radius:18px;
+      background:linear-gradient(180deg,#f6faff,#fff);
+    }
+    .brief-label {
+      color:#6880a0;
+      font-size:12px;
+      font-weight:950;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+    }
+    .lesson-brief h3 {
+      margin:7px 0 12px;
+      color:#1b3967;
+      font-size:clamp(21px,2.4vw,28px);
+      line-height:1.28;
+      letter-spacing:-.02em;
+    }
+    .lesson-brief > p {
+      max-width:960px;
+      margin:0;
+      color:#4e617a;
+      font-size:clamp(15px,1.4vw,17px);
+      line-height:1.78;
+    }
+    .brief-communication {
+      margin-top:18px;
+      padding:15px 17px;
+      border-left:4px solid #88a7cf;
+      border-radius:12px;
+      background:#eef4fa;
+    }
+    .brief-communication span {
+      display:block;
+      color:#557293;
+      font-size:12px;
+      font-weight:950;
+      letter-spacing:.05em;
+      text-transform:uppercase;
+    }
+    .brief-communication p {
+      margin:6px 0 0;
+      color:#435c78;
+      font-size:15px;
+      line-height:1.6;
+    }
+    .brief-example {
+      margin-top:16px;
+      padding:14px 16px;
+      border-radius:12px;
+      background:#e6eef7;
+      color:#2f4f73;
+      font-size:15px;
+      line-height:1.6;
+    }
+    .brief-example span {
+      display:block;
+      margin-bottom:3px;
+      color:#657d99;
+      font-size:11px;
+      font-weight:950;
+      letter-spacing:.07em;
+      text-transform:uppercase;
+    }
+
+    /* ANA ÜNİTE VİDEOSU */
+    .primary-lesson {
+      margin-top:16px;
+      padding:clamp(20px,3vw,28px);
+      border:2px solid #b8cce5;
+      border-radius:20px;
+      background:
+        radial-gradient(circle at top right,rgba(35,64,120,.09),transparent 38%),
+        linear-gradient(180deg,#fff,#f1f6fc);
+      box-shadow:0 12px 30px rgba(35,64,120,.075);
+    }
+    .primary-lesson-top {
+      display:flex;
+      align-items:center;
+      gap:17px;
+    }
+    .primary-lesson-icon {
+      width:68px;
+      height:68px;
+      flex:0 0 auto;
+      display:grid;
+      place-items:center;
+      border-radius:20px;
+      background:var(--navy);
+      color:#fff;
+      font-size:25px;
+      box-shadow:0 10px 24px rgba(35,64,120,.20);
+    }
+    .primary-lesson-copy {
+      min-width:0;
+      flex:1;
+    }
+    .primary-lesson-copy span {
+      display:block;
+      color:#647d9f;
+      font-size:12px;
+      font-weight:950;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+    }
+    .primary-lesson-copy strong {
+      display:block;
+      margin-top:5px;
+      color:#18345f;
+      font-size:clamp(20px,2.4vw,27px);
+      line-height:1.25;
+      overflow-wrap:anywhere;
+    }
+    .primary-lesson-copy small {
+      display:block;
+      margin-top:6px;
+      color:#65778e;
+      font-size:14px;
+      line-height:1.5;
+    }
+    .primary-lesson-actions {
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      margin-top:18px;
+    }
+    .primary-play,
+    .primary-external {
+      min-height:50px;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      border-radius:14px;
+      font-size:15px;
+      font-weight:950;
+      cursor:pointer;
+    }
+    .primary-play {
+      padding:12px 20px;
+      border:0;
+      background:var(--navy);
+      color:#fff;
+      box-shadow:0 7px 18px rgba(35,64,120,.16);
+    }
+    .primary-play:hover { background:#102b57; }
+    .primary-external {
+      padding:11px 18px;
+      border:1px solid #cbd7e6;
+      background:#fff;
+      color:#35557d;
+    }
+
+    .support-section {
+      margin-top:18px;
+    }
+    .video-section-title {
+      margin:0 3px 10px;
+      color:#445d7c;
+      font-size:15px;
+      font-weight:950;
+    }
+    .video-list {
+      display:grid;
+      gap:9px;
+    }
+    .video {
+      display:flex;
+      align-items:center;
+      gap:12px;
+      min-width:0;
+      padding:12px;
+      border:1px solid #dfe6ef;
+      border-radius:14px;
+      background:#fff;
+    }
+    .video-kind {
+      width:42px;
+      height:42px;
+      flex:0 0 auto;
+      display:grid;
+      place-items:center;
+      border-radius:12px;
+      font-size:15px;
+      font-weight:900;
+    }
+    .video-kind.grammar { background:#fff0d1; color:#946316; }
+    .video-kind.speaking { background:#e1f2ea; color:#286e52; }
+    .video-kind.lesson { background:#e5eef9; color:#315f9e; }
+    .video-copy {
+      min-width:0;
+      flex:1;
+    }
+    .video-copy strong {
+      display:block;
+      color:#293f60;
+      font-size:15px;
+      line-height:1.35;
+      overflow-wrap:anywhere;
+    }
+    .video-copy span {
+      display:block;
+      margin-top:3px;
+      color:#79879a;
+      font-size:12px;
+      font-weight:700;
+    }
+    .video-btns {
+      display:flex;
+      gap:6px;
+      flex:0 0 auto;
+    }
+    .small-btn {
+      width:42px;
+      height:42px;
+      display:grid;
+      place-items:center;
+      border:1px solid #d7e0eb;
+      border-radius:11px;
+      background:#fff;
+      color:var(--navy);
+      font-size:14px;
+      font-weight:900;
+      cursor:pointer;
+    }
+    .small-btn:hover {
+      border-color:var(--navy);
+      background:var(--navy);
+      color:#fff;
+    }
+    .unit-note {
+      margin-top:12px;
+      padding:13px 14px;
+      border:1px dashed #c5d1e1;
+      border-radius:12px;
+      background:#fff;
+      color:#65758b;
+      font-size:13px;
+      line-height:1.55;
+    }
+
+    /* =========================
+       SINAV
+       ========================= */
+    .exam-section {
+      width:min(100%,1080px);
+      margin:34px auto 52px;
+      padding:26px;
+      border:1px solid #e6d3a1;
+      border-radius:24px;
+      background:linear-gradient(135deg,#fff9e9,#fff);
+      box-shadow:0 12px 30px rgba(143,105,32,.065);
+    }
+    .exam-label {
+      display:inline-block;
+      padding:7px 10px;
+      border-radius:999px;
+      background:#f1dfb2;
+      color:#725419;
+      font-size:11px;
+      font-weight:950;
+      letter-spacing:.07em;
+      text-transform:uppercase;
+    }
+    .exam-section h2 {
+      margin:11px 0 7px;
+      color:#59431d;
+      font-size:clamp(25px,3vw,33px);
+      letter-spacing:-.03em;
+    }
+    .exam-section > p {
+      margin:0;
+      color:#7c6a45;
+      font-size:15px;
+      line-height:1.6;
+    }
+    .exam-grid {
+      display:grid;
+      grid-template-columns:repeat(2,minmax(0,1fr));
+      gap:12px;
+      margin-top:18px;
+    }
+    .exam-card {
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:14px;
+      padding:16px;
+      border:1px solid #ead8aa;
+      border-radius:16px;
+      background:#fff;
+    }
+    .exam-card strong {
+      display:block;
+      color:#59451f;
+      font-size:15px;
+    }
+    .exam-card span {
+      display:block;
+      margin-top:4px;
+      color:#887654;
+      font-size:12px;
+    }
+    .exam-open {
+      min-height:46px;
+      flex:0 0 auto;
+      padding:10px 14px;
+      border:0;
+      border-radius:12px;
+      background:var(--navy);
+      color:#fff;
+      font-size:13px;
+      font-weight:900;
+      cursor:pointer;
+    }
+
+    .footer {
+      padding:0 0 34px;
+      color:#7d8999;
+      font-size:12px;
+    }
+    .footer-inner {
+      display:flex;
+      justify-content:space-between;
+      gap:12px;
+      flex-wrap:wrap;
+      padding-top:18px;
+      border-top:1px solid var(--line);
+    }
+
+    /* =========================
+       VIDEO MODAL
+       ========================= */
+    dialog {
+      width:min(1040px,calc(100vw - 26px));
+      max-height:calc(100dvh - 24px);
+      padding:0;
+      overflow:auto;
+      border:0;
+      border-radius:20px;
+      background:#07111f;
+      color:#fff;
+      box-shadow:0 30px 90px rgba(0,0,0,.42);
+    }
+    dialog::backdrop {
+      background:rgba(4,10,18,.78);
+      backdrop-filter:blur(4px);
+    }
+    .modal-head {
+      position:sticky;
+      top:0;
+      z-index:2;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+      padding:13px 14px;
+      background:#07111f;
+    }
+    .modal-title {
+      min-width:0;
+      overflow:hidden;
+      white-space:nowrap;
+      text-overflow:ellipsis;
+      font-size:14px;
+      font-weight:900;
+    }
+    .modal-actions {
+      display:flex;
+      align-items:center;
+      gap:7px;
+      flex:0 0 auto;
+    }
+    .modal-external,.modal-close {
+      border:0;
+      border-radius:10px;
+      background:#15253c;
+      color:#fff;
+      cursor:pointer;
+    }
+    .modal-external {
+      min-height:36px;
+      padding:8px 11px;
+      font-size:11px;
+      font-weight:850;
+    }
+    .modal-close {
+      width:38px;
+      height:38px;
+      font-size:22px;
+    }
+    .player {
+      width:100%;
+      aspect-ratio:16/9;
+      background:#000;
+    }
+    .player iframe {
+      width:100%;
+      height:100%;
+      display:block;
+      border:0;
+    }
+
+    /* =========================
+       RESPONSIVE
+       ========================= */
+    @media (min-width:1500px) {
+      body { font-size:18px; }
+      .container { width:min(1320px,calc(100% - 72px)); }
+      .units-hub,.exam-section { width:min(100%,1140px); }
+    }
+
+    @media (max-width:1024px) {
+      :root { --topbar-h:68px; }
+      .container { width:min(100% - 28px,1180px); }
+      .quick-links { grid-template-columns:1fr; }
+      .quick-link { min-height:76px; }
+      .nav { display:none; }
+      .units-hub,.exam-section { width:100%; }
+      .exam-grid { grid-template-columns:1fr; }
+    }
+
+    @media (max-width:720px) {
+      :root { --topbar-h:62px; }
+
+      body {
+        font-size:16px;
+      }
+      .container {
+        width:calc(100% - 18px);
+      }
+      .topbar-inner {
+        min-height:var(--topbar-h);
+      }
+      .brand-logo {
+        width:38px;
+        height:38px;
+        border-radius:12px;
+      }
+      .brand-copy strong {
+        font-size:14px;
+      }
+      .brand-copy span {
+        display:none;
+      }
+
+      .hero {
+        padding-top:10px;
+      }
+      .hero-box {
+        padding:23px 18px;
+        border-radius:21px;
+      }
+      .hero h1 {
+        margin-top:13px;
+        font-size:clamp(32px,9vw,42px);
+      }
+      .hero p {
+        font-size:16px;
+        line-height:1.58;
+      }
+      .notice {
+        margin-top:16px;
+        padding:13px;
+        font-size:13px;
+      }
+
+      .quick-links {
+        gap:8px;
+        margin:10px 0 24px;
+      }
+      .quick-link {
+        min-height:68px;
+        padding:12px 13px;
+        border-radius:15px;
+      }
+      .quick-icon {
+        width:42px;
+        height:42px;
+        border-radius:12px;
+      }
+      .quick-copy strong {
+        font-size:15px;
+      }
+      .quick-copy small {
+        font-size:12px;
+      }
+
+      .section-head {
+        align-items:flex-start;
+        gap:12px;
+      }
+      .section-head h2 {
+        font-size:29px;
+      }
+      .section-head p {
+        font-size:14px;
+      }
+      .level-tabs {
+        width:100%;
+      }
+      .level-tab {
+        flex:1;
+        min-width:0;
+        min-height:44px;
+        padding:9px 8px;
+      }
+
+      .unit-accordion {
+        margin-bottom:10px;
+        border-radius:16px;
+      }
+      .unit-accordion-head {
+        min-height:88px;
+        gap:11px;
+        padding:14px 12px;
+        border-radius:16px;
+      }
+      .unit-accordion.open .unit-accordion-head {
+        top:calc(var(--topbar-h) + 5px);
+      }
+      .unit-index {
+        width:46px;
+        height:46px;
+        border-radius:14px;
+        font-size:14px;
+      }
+      .unit-head-copy > span {
+        font-size:10px;
+      }
+      .unit-head-copy strong {
+        font-size:17px;
+      }
+      .unit-head-copy small {
+        font-size:13px;
+      }
+      .unit-chevron {
+        width:36px;
+        height:36px;
+        border-radius:10px;
+      }
+
+      .unit-accordion-body {
+        padding:10px;
+      }
+      .lesson-brief {
+        padding:17px;
+        border-radius:15px;
+      }
+      .brief-label {
+        font-size:10px;
+      }
+      .lesson-brief h3 {
+        font-size:20px;
+      }
+      .lesson-brief > p {
+        font-size:15px;
+        line-height:1.7;
+      }
+      .brief-communication {
+        margin-top:14px;
+        padding:13px 14px;
+      }
+      .brief-communication span {
+        font-size:10px;
+      }
+      .brief-communication p {
+        font-size:14px;
+      }
+      .brief-example {
+        margin-top:13px;
+        padding:12px 13px;
+        font-size:14px;
+      }
+
+      .primary-lesson {
+        margin-top:11px;
+        padding:16px;
+        border-radius:16px;
+      }
+      .primary-lesson-top {
+        align-items:flex-start;
+        gap:12px;
+      }
+      .primary-lesson-icon {
+        width:52px;
+        height:52px;
+        border-radius:15px;
+        font-size:19px;
+      }
+      .primary-lesson-copy span {
+        font-size:10px;
+      }
+      .primary-lesson-copy strong {
+        font-size:19px;
+      }
+      .primary-lesson-copy small {
+        font-size:13px;
+      }
+      .primary-lesson-actions {
+        flex-direction:column;
+        margin-top:14px;
+      }
+      .primary-play,.primary-external {
+        width:100%;
+        min-height:50px;
+        font-size:15px;
+      }
+
+      .video {
+        gap:10px;
+        padding:11px;
+      }
+      .video-kind {
+        width:38px;
+        height:38px;
+      }
+      .video-copy strong {
+        font-size:14px;
+      }
+      .video-copy span {
+        font-size:11px;
+      }
+      .small-btn {
+        width:40px;
+        height:40px;
+      }
+
+      .exam-section {
+        margin-top:28px;
+        padding:19px;
+        border-radius:20px;
+      }
+      .exam-card {
+        flex-direction:column;
+        align-items:stretch;
+      }
+      .exam-open {
+        width:100%;
+      }
+
+      dialog {
+        width:calc(100vw - 10px);
+        max-height:calc(100dvh - 10px);
+        border-radius:15px;
+      }
+      .modal-external {
+        display:none;
+      }
+
+      .ayda-login-card {
+        padding:24px 20px;
+        border-radius:23px;
+      }
+      #aydaLoginBox h1 {
+        font-size:24px;
+      }
+      .ayda-password-row {
+        flex-direction:column;
+      }
+      .ayda-login-btn {
+        padding:14px 18px;
+      }
+    }
+
+    @media (max-width:420px) {
+      .container {
+        width:calc(100% - 12px);
+      }
+      .hero-box {
+        padding:20px 15px;
+      }
+      .hero h1 {
+        font-size:30px;
+      }
+      .hero p {
+        font-size:15px;
+      }
+      .kicker {
+        font-size:9px;
+      }
+
+      .unit-accordion-head {
+        padding:12px 10px;
+      }
+      .unit-index {
+        width:42px;
+        height:42px;
+      }
+      .unit-head-copy strong {
+        font-size:16px;
+      }
+      .unit-head-copy small {
+        font-size:12px;
+      }
+      .unit-chevron {
+        width:32px;
+        height:32px;
+      }
+
+      .lesson-brief {
+        padding:15px;
+      }
+      .lesson-brief h3 {
+        font-size:19px;
+      }
+      .lesson-brief > p {
+        font-size:14.5px;
+      }
+
+      .primary-lesson {
+        padding:14px;
+      }
+      .primary-lesson-copy strong {
+        font-size:18px;
+      }
+
+      .video-kind {
+        display:none;
+      }
+      .video-copy strong {
+        font-size:13.5px;
+      }
+      .small-btn {
+        width:38px;
+        height:38px;
+      }
+    }
+
+    @media (max-width:340px) {
+      .unit-head-copy small {
+        display:none;
+      }
+      .quick-icon {
+        display:none;
+      }
+      .hero h1 {
+        font-size:28px;
+      }
+      .unit-head-copy strong {
+        font-size:15px;
+      }
+    }
+
+    @media (max-height:520px) and (orientation:landscape) {
+      :root { --topbar-h:0px; }
+      .topbar { position:relative; }
+      .unit-accordion.open .unit-accordion-head {
+        top:6px;
+      }
+      .quick-links {
+        grid-template-columns:repeat(3,minmax(0,1fr));
+      }
+      .hero-box {
+        padding:18px;
+      }
+    }
+
+    @media (prefers-reduced-motion:reduce) {
+      html { scroll-behavior:auto; }
+      *,*::before,*::after {
+        scroll-behavior:auto !important;
+        animation:none !important;
+        transition:none !important;
+      }
+    }
+
+    /* Güvenli sayfa kaydırma: mouse wheel, touchpad ve mobil dokunma */
+    html, body {
+      width: 100%;
+      min-height: 100%;
+      height: auto !important;
+      overflow-x: hidden !important;
+      overflow-y: auto !important;
+      position: static;
+      touch-action: pan-y pinch-zoom;
+    }
+
+    #aydaProtectedContent,
+    #root {
+      width: 100%;
+      min-height: 100vh;
+      min-height: 100dvh;
+      height: auto !important;
+      overflow: visible !important;
+      position: static;
+    }
+
+  </style>
+</head>
+
+<body>
+  <section id="aydaLoginBox" aria-label="AYDA giriş ekranı">
+    <div class="ayda-login-card">
+      <div class="ayda-login-logo">AY</div>
+      <h1>AYDA A2 Video Tekrar</h1>
+      <p>Devam etmek için size verilen sınıf kodunu veya giriş parolasını yazınız.</p>
+
+      <form class="ayda-password-row" onsubmit="aydaCheckPassword(); return false;">
+        <input
+          id="aydaPasswordInput"
+          type="password"
+          placeholder="Giriş parolası"
+          autocomplete="off"
+          aria-describedby="aydaLoginMessage"
+        />
+        <button class="ayda-login-btn" type="submit">Giriş</button>
+      </form>
+
+      <div id="aydaLoginMessage" role="status" aria-live="polite"></div>
+    </div>
+  </section>
+
+  <div id="aydaProtectedContent">
+    <div id="root">
+    <header class="topbar">
+      <div class="container topbar-inner">
+        <a class="brand" href="#top">
+          <div class="brand-logo">AY</div>
+          <div class="brand-copy">
+            <strong>AYDA A2 Video Tekrar</strong>
+            <span>Menschen A2.1 + A2.2 • 24 Ünite</span>
+          </div>
+        </a>
+
+        <nav class="nav">
+          <a href="#unitList">Üniteler</a>
+          <a href="#sinav">Sınav Videoları</a>
+          <a href="https://kurs.aydadil.com/" target="_blank" rel="noopener">Ders Kayıtları</a>
+        </nav>
+      </div>
+    </header>
+
+    <main id="top">
+      <section class="hero">
+        <div class="container">
+          <div class="hero-box">
+            <span class="kicker">AYDA Dil Akademisi • A2</span>
+            <h1>A2 Video Tekrar Merkezi</h1>
+            <p>
+              Menschen A2.1 ve A2.2 konularını ünite ünite tekrar et.
+              Üniteyi açtığında kısa konu anlatımı, büyük ana ders videosu ve destek videoları aynı yerde görünür.
+            </p>
+
+            <div class="notice">
+              <span>ℹ️</span>
+              <span>
+                <strong>Bu sayfa video tekrar içindir.</strong>
+                Alıştırma veya test içermez. Sınava yönelik içerikler ayrıca aşağıdaki sınav bölümünde ve AYDA Sınav Hazırlık sitesinde bulunur.
+              </span>
+            </div>
+          </div>
+
+          <div class="quick-links">
+            <a class="quick-link" href="https://www.aydadil.com/sinavhazirlik/de" target="_blank" rel="noopener">
+              <span class="quick-icon">🎯</span>
+              <span class="quick-copy"><strong>Sınav Hazırlık Sitesi</strong><small>Goethe / ÖSD / TELC hazırlık</small></span>
+              <span class="quick-arrow">↗</span>
+            </a>
+
+            <a class="quick-link" href="https://www.aydadil.com/bibliothek/" target="_blank" rel="noopener">
+              <span class="quick-icon">📚</span>
+              <span class="quick-copy"><strong>Kütüphane</strong><small>Ek kaynaklar ve materyaller</small></span>
+              <span class="quick-arrow">↗</span>
+            </a>
+
+            <a class="quick-link" href="https://kurs.aydadil.com/" target="_blank" rel="noopener">
+              <span class="quick-icon">🎥</span>
+              <span class="quick-copy"><strong>Canlı Ders Tekrarları</strong><small>Ders kayıtlarını buradan izle</small></span>
+              <span class="quick-arrow">↗</span>
+            </a>
+          </div>
+
+          <section class="units-hub">
+            <div class="section-head">
+              <div>
+                <h2>A2 Üniteleri</h2>
+                <p>Bir üniteye bas. Sadece seçtiğin ünite açık kalsın.</p>
+              </div>
+
+              <div class="level-tabs" role="tablist" aria-label="A2 bölümü">
+                <button class="level-tab active" type="button" data-level-filter="all">Tümü</button>
+                <button class="level-tab" type="button" data-level-filter="a21">A2.1</button>
+                <button class="level-tab" type="button" data-level-filter="a22">A2.2</button>
+              </div>
+            </div>
+
+            <div id="unitList" class="unit-list"></div>
+          </section>
+
+          <section class="exam-section" id="sinav">
+            <span class="exam-label">Ünite tekrarından ayrı</span>
+            <h2>A2 Sınav Bilgilendirme</h2>
+            <p>Bu videolar ders ünitesi değildir; A2 sınav formatını ve sürecini anlatır.</p>
+
+            <div class="exam-grid">
+              <div class="exam-card">
+                <div>
+                  <strong>TELC A2 Sınav Bilgilendirme</strong>
+                  <span>TELC A2 sınav formatı ve süreç</span>
+                </div>
+                <button class="exam-open" type="button" onclick="openPlayer('TELC A2 Sınav Bilgilendirme','youtube','cMazUdDPDnE')">Videoyu Aç</button>
+              </div>
+
+              <div class="exam-card">
+                <div>
+                  <strong>A2 Genel Sınav Bilgilendirme</strong>
+                  <span>Genel A2 sınav bilgilendirmesi</span>
+                </div>
+                <button class="exam-open" type="button" onclick="openPlayer('A2 Genel Sınav Bilgilendirme','youtube','3Ve94Lc4Adw')">Videoyu Aç</button>
+              </div>
+            </div>
+          </section>
+
+          <footer class="footer">
+            <div class="footer-inner">
+              <span>AYDA Dil Akademisi • A2 Video Tekrar Merkezi</span>
+              <span>Video tekrar sayfası • Alıştırma içermez</span>
+            </div>
+          </footer>
+        </div>
+      </section>
+    </main>
+    </div>
+  </div>
+
+  <dialog id="videoDialog">
+    <div class="modal-head">
+      <div class="modal-title" id="videoTitle">Video</div>
+      <div class="modal-actions">
+        <button class="modal-external" id="externalBtn" type="button">Yeni sekmede aç</button>
+        <button class="modal-close" type="button" onclick="closePlayer()" aria-label="Kapat">×</button>
+      </div>
+    </div>
+    <div class="player">
+      <iframe id="videoFrame" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe>
+    </div>
+  </dialog>
+
+  <script
+    src="https://onurqlp.github.io/ayda-pass/access-control.js"
+    onerror="document.getElementById('aydaLoginMessage').textContent='Şifre sistemi yüklenemedi.'"
+  ></script>
+
+  <script>
+    window.addEventListener("load", function () {
+      window.setTimeout(function () {
+        var msg = document.getElementById("aydaLoginMessage");
+        if (typeof window.aydaCheckPassword !== "function" && msg && !msg.textContent) {
+          msg.textContent = "Şifre sistemi yüklenemedi. Lütfen sayfayı yenileyin.";
+        }
+      }, 1800);
+    });
+  </script>
+
+  <script>
+    const units = [
+      {
+        no:1, level:"a21", title:"Mein Opa war auch schon Bäcker.",
+        topic:"Berufe und Familie • Meslek, aile ve geçmiş",
+        tags:["Präteritum","Meslek","Biyografi"],
+        videos:[
+          ["lesson","Ünite Dersi","Ünite 1–2","drive","1qcUkWn5l1zttjaNHbPQ4JIzDRqpDHIph"],
+          ["grammar","Kısa Gramer","Präteritum","drive","1Qof2D3pGnR0Bw95dx6_8gf79NsxRLLDz"],
+          ["speaking","Konuşma","Biyografi Hakkında Konuşma Kalıpları","drive","1bA-1NKTYZvraqBZWBHmPpCtxC-uEEFzi"],
+          ["speaking","Konuşma","İş Dünyası Hakkında Konuşma Kalıpları","drive","1xKUxy2mJ7tHbnnbGQA3f0rhIQHHXcFFp"]
+        ]
+      },
+      {
+        no:2, level:"a21", title:"Wohin mit der Kommode?",
+        topic:"Wohnen • Ev, mobilya, yer ve taşınma",
+        tags:["Wechselpräpositionen","Wo / Wohin","Ev"],
+        videos:[
+          ["lesson","Ünite Dersi","Ünite 1–2","drive","1qcUkWn5l1zttjaNHbPQ4JIzDRqpDHIph"],
+          ["grammar","Kısa Gramer","Wechselpräpositionen – Wo / Wohin","drive","1WT_1K-8qChJmT2JjM8JmGpXuaHaxGM2x"],
+          ["speaking","Konuşma","Evim Hakkında Konuşma Kalıpları","drive","1fJ2r3Nz1-8QDFp1P_xQZOE_1FyrayZlD"],
+          ["speaking","Konuşma","Taşınma Hakkında Konuşma Kalıpları","drive","1nBrynhPPd5b3H9AWyTL5_phjAtzYZ8yN"]
+        ]
+      },
+      {
+        no:3, level:"a21", title:"Hier finden Sie Ruhe und Erholung.",
+        topic:"Tourismus • Turizm, gezi, tatil ve seyahat",
+        tags:["Turizm","Seyahat","Tatil"],
+        note:"Bu ünitenin gramerine birebir uyan ayrı bir kısa gramer videosu arşivde bulunmuyor.",
+        videos:[
+          ["lesson","Ünite Dersi","Ünite 3–4","drive","1JQ0LmqxezzgtGViOVmuTrViALB3b1bQl"],
+          ["speaking","Konuşma","Seyahat Hakkında Konuşma Kalıpları","drive","1I2oi89z8k_3VoM3xaKtz0JZrL1Jnl4O6"],
+          ["speaking","Okuma / Destek","Mein Bester Urlaub","drive","1pFaFqxIYxvvJGK2Lg12pXyXBSw8jsszg"]
+        ]
+      },
+      {
+        no:4, level:"a21", title:"Was darf es sein?",
+        topic:"Einkaufen • Alışveriş, yiyecek ve ürünler",
+        tags:["Adjektivendungen","Alışveriş","Yiyecek"],
+        videos:[
+          ["lesson","Ünite Dersi","Ünite 3–4","drive","1JQ0LmqxezzgtGViOVmuTrViALB3b1bQl"],
+          ["grammar","Kısa Gramer","Adjektiv Endungen ve N-Deklination","drive","15Q46YTDdoKpQptdfFzzzHqxlBufKRM05"],
+          ["grammar","Kısa Gramer","Adjektiv Endungen 2","drive","1OvEcaL3P8ym0ysCC8ROMOO5ja25kUkAn"],
+          ["speaking","Konuşma","Şarküteride Konuşma Kalıpları","drive","1D1zPHeHX3ob0oq0usVLv11vFJmtqSxs-"]
+        ]
+      },
+      {
+        no:5, level:"a21", title:"Schaut mal, der schöne Dom!",
+        topic:"Stadtbesichtigung • Şehir gezisi ve betimleme",
+        tags:["Adjektivendungen","Şehir","Betimleme"],
+        videos:[
+          ["lesson","Ünite Dersi","Ünite 5–6","drive","18AwtornHSsb8tL7fFC5wxelXcjN8Ber2"],
+          ["grammar","Kısa Gramer","Adjektiv Endungen ve N-Deklination","drive","15Q46YTDdoKpQptdfFzzzHqxlBufKRM05"],
+          ["grammar","Kısa Gramer","Adjektiv Endungen 2","drive","1OvEcaL3P8ym0ysCC8ROMOO5ja25kUkAn"]
+        ]
+      },
+      {
+        no:6, level:"a21", title:"Meine Lieblingsveranstaltung",
+        topic:"Kultur • Etkinlikler, buluşma ve zaman ifadeleri",
+        tags:["Temporale Präpositionen","Kültür","Etkinlik"],
+        videos:[
+          ["lesson","Ünite Dersi","Ünite 5–6","drive","18AwtornHSsb8tL7fFC5wxelXcjN8Ber2"],
+          ["grammar","Kısa Gramer","Temporale Präpositionen","drive","1f03wRpCzJAbfMnnTjbG7TMF4jiJecAmN"],
+          ["speaking","Konuşma","Kültür Sanat Hakkında Konuşma Kalıpları","drive","1Hep9N-f9agLai0GbH8gbueCG3JwN7Hnd"]
+        ]
+      },
+      {
+        no:7, level:"a21", title:"Wir könnten montags joggen gehen.",
+        topic:"Sport und Fitness • Spor, öneri ve tavsiye",
+        tags:["Spor","Tavsiye","könnte / sollte"],
+        note:"Könnte / sollte konusu için ayrı kısa video arşivde görünmüyor.",
+        videos:[
+          ["lesson","Ünite Dersi","7. Ünite","drive","1agpP79BKczDvYKoxzDjEyp8CeuQWcciO"],
+          ["speaking","Konuşma","Spor Hakkında Konuşma Kalıpları","drive","1ewXkQ21jd8BVPbK7C07a-Hdav2TvOyov"],
+          ["speaking","Konuşma","Spor Hakkında Konuşma Kalıpları 2","drive","1rF9jZcxUsYHowquL6dO94bp1xtpVDacq"]
+        ]
+      },
+      {
+        no:8, level:"a21", title:"Hoffentlich ist es nicht das Herz!",
+        topic:"Gesundheit und Krankheit • Sağlık, sebep ve sonuç",
+        tags:["weil","Bağlaçlar","Sağlık"],
+        videos:[
+          ["lesson","Ünite Dersi","Ünite 8","drive","16hm3Eu9Cmaf6VjrU3oOiuy7oNWDGcsOr"],
+          ["grammar","Kısa Gramer","Dass – Weil Nebensätze","drive","17hzsX-ipTputSMWYyXoqvYXzBxedD9mG"],
+          ["grammar","Kısa Gramer","Konnektoren / Bağlaçlar","drive","1P8DGTq1jX3_Ajh7Q0zHUwFHSa8MJM5HZ"],
+          ["speaking","Konuşma","Duygular Hakkında Konuşma Kalıpları","drive","11rae7GlifeFNraMyIqYlMKYBDp9zgfto"]
+        ]
+      },
+      {
+        no:9, level:"a21", title:"Bei guten Autos sind wir ganz vorn.",
+        topic:"Arbeitsleben • İş hayatı ve iş ortamı",
+        tags:["Adjektivendungen","İş","Meslek"],
+        videos:[
+          ["lesson","Ünite Dersi","Ünite 9","drive","17I7fqrcjl4joBnZQ4H6bMwmlSJcWE0-h"],
+          ["grammar","Kısa Gramer","Adjektiv Endungen 2","drive","1OvEcaL3P8ym0ysCC8ROMOO5ja25kUkAn"],
+          ["speaking","Konuşma","İş Dünyası Hakkında Konuşma Kalıpları","drive","1xKUxy2mJ7tHbnnbGQA3f0rhIQHHXcFFp"]
+        ]
+      },
+      {
+        no:10, level:"a21", title:"Gut, dass du reserviert hast.",
+        topic:"Im Restaurant • Sipariş, rica ve iletişim",
+        tags:["dass","Yemek","Nezaket"],
+        videos:[
+          ["lesson","Ünite Dersi","Ünite 10–11","drive","1sxsuCPwHnyYJSeAgTGBbO8tFcuzlnQIh"],
+          ["grammar","Kısa Gramer","Dass – Weil Nebensätze","drive","17hzsX-ipTputSMWYyXoqvYXzBxedD9mG"],
+          ["speaking","Konuşma","Yemek Hakkında Konuşma Kalıpları","drive","1dSquNQTHdYvlJsIGC48z9vBCQJhXnuzK"],
+          ["speaking","Konuşma","Nezaket Hakkında Konuşma Kalıpları","drive","1YPJcNQ5EurzaMMN7kCXofy3MBfwPm6_K"]
+        ]
+      },
+      {
+        no:11, level:"a21", title:"Ich freue mich so.",
+        topic:"Firmenporträt • Firma ve iş ortamını tanıtma",
+        tags:["Reflexive Verben","Firma","İş"],
+        videos:[
+          ["lesson","Ünite Dersi","Ünite 10–11","drive","1sxsuCPwHnyYJSeAgTGBbO8tFcuzlnQIh"],
+          ["grammar","Kısa Gramer","Reflexive Verben","drive","10REiLgCzm9jTcivNIf0kHC3x4Ej-aE98"],
+          ["speaking","Konuşma","Firma Hakkında Konuşma Kalıpları","drive","16EgHRmKyuDUJae5wscTr7X_Sl5cJpERm"]
+        ]
+      },
+      {
+        no:12, level:"a21", title:"Wenn es warm ist, essen wir meist Salat.",
+        topic:"Ernährung • Beslenme ve koşul cümleleri",
+        tags:["wenn / dann","Beslenme","Yemek"],
+        videos:[
+          ["lesson","Ünite / Tekrar","Ünite 12 – A2.1 Alıştırmalar","drive","1NtEygmHQIFWQjO25woZATXAFLb20gPb0"],
+          ["grammar","Kısa Gramer","Wenn – Dann Bağlaç Yapısı","drive","14JJ1EcuPeeP3rpO5xoVLb6FUK5jT_u9C"],
+          ["speaking","Konuşma","Yemek Hakkında Konuşma Kalıpları","drive","1dSquNQTHdYvlJsIGC48z9vBCQJhXnuzK"],
+          ["speaking","Okuma / Destek","Ein neuer Ernährungsplan","drive","1130ic2CDTsZDwVcNtH3_So9rkrfW6bg1"]
+        ]
+      },
+
+      {
+        no:13, level:"a22", title:"Meine erste „Deutschlehrerin“",
+        topic:"Sprachen lernen • Dil öğrenme deneyimleri",
+        tags:["als","Dil öğrenme"],
+        note:"Als konusu için arşivde birebir isimlendirilmiş kısa video bulunmuyor.",
+        videos:[
+          ["lesson","Ünite Dersi","Ünite 13–14","drive","1wwOxvj-J_sLGlY2VuL4YSxWZx1MSycRo"]
+        ]
+      },
+      {
+        no:14, level:"a22", title:"Es werden fleißig Päckchen gepackt.",
+        topic:"Post und Telekommunikation • Posta, paket ve iletişim",
+        tags:["Passiv","Telefon","İletişim"],
+        videos:[
+          ["lesson","Ünite Dersi","Ünite 13–14","drive","1wwOxvj-J_sLGlY2VuL4YSxWZx1MSycRo"],
+          ["grammar","Kısa Gramer","Passiv","drive","1uSLzj8LcEAw5_Q6Ayv_5l6sKSt2QW7rV"],
+          ["speaking","Konuşma","Telefonda Konuşma Kalıpları","drive","1UZIbdXzZn0NLibtJOtzbzqGxBChtqw6Y"],
+          ["speaking","Konuşma","İletişim Hakkında Konuşma Kalıpları","drive","1iFyrqeFYGQi4LUjXaX5CI9sUuvHnEtip"]
+        ]
+      },
+      {
+        no:15, level:"a22", title:"Gleich geht’s los!",
+        topic:"Medien • Medya ve televizyon alışkanlıkları",
+        tags:["Dativ","Akkusativ","Medya"],
+        videos:[
+          ["lesson","Ünite Dersi","Ünite 15–16","drive","1egW8Yx2nBIBTQhSUl8MSNRaSJ6H0_TSI"],
+          ["grammar","Kısa Gramer","Verben mit Dativ","drive","1OlJ_6c16TWdtYQubnwvVShfmZv7pIF3l"],
+          ["speaking","Konuşma","İletişim Hakkında Konuşma Kalıpları","drive","1iFyrqeFYGQi4LUjXaX5CI9sUuvHnEtip"]
+        ]
+      },
+      {
+        no:16, level:"a22", title:"Darf ich fragen, ob ...?",
+        topic:"Im Hotel • Rezervasyon, bilgi isteme ve dolaylı sorular",
+        tags:["Indirekte Fragen","Otel","Seyahat"],
+        note:"Dolaylı sorular (ob / W-Frage) için arşivde birebir kısa video bulunmuyor.",
+        videos:[
+          ["lesson","Ünite Dersi","Ünite 15–16","drive","1egW8Yx2nBIBTQhSUl8MSNRaSJ6H0_TSI"],
+          ["speaking","Konuşma","Telefonda Konuşma Kalıpları","drive","1UZIbdXzZn0NLibtJOtzbzqGxBChtqw6Y"],
+          ["speaking","Konuşma","Seyahat Hakkında Konuşma Kalıpları","drive","1I2oi89z8k_3VoM3xaKtz0JZrL1Jnl4O6"]
+        ]
+      },
+      {
+        no:17, level:"a22", title:"Wir wollen nach Rumänien.",
+        topic:"Reisen und Verkehr • Seyahat, ulaşım ve yer ifadeleri",
+        tags:["Wo / Wohin","Seyahat","Ulaşım"],
+        videos:[
+          ["lesson","Ünite Dersi","Ünite 17–18","drive","1IP_kliR82YHYOkWTAgeeBpU8NUBuLVBG"],
+          ["grammar","Kısa Gramer","Wechselpräpositionen – Wo / Wohin","drive","1WT_1K-8qChJmT2JjM8JmGpXuaHaxGM2x"],
+          ["speaking","Konuşma","Seyahat Hakkında Konuşma Kalıpları","drive","1I2oi89z8k_3VoM3xaKtz0JZrL1Jnl4O6"],
+          ["speaking","Okuma / Destek","Mein Bester Urlaub","drive","1pFaFqxIYxvvJGK2Lg12pXyXBSw8jsszg"]
+        ]
+      },
+      {
+        no:18, level:"a22", title:"Ich freue mich auf Sonne und Wärme.",
+        topic:"Wetter und Klima • Hava, iklim ve fiil + edat",
+        tags:["Wetter","Verben mit Präpositionen"],
+        note:"Bu ünitenin fiil + edat konusuna birebir isimlendirilmiş kısa video arşivde görünmüyor.",
+        videos:[
+          ["lesson","Ünite Dersi","Ünite 17–18","drive","1IP_kliR82YHYOkWTAgeeBpU8NUBuLVBG"]
+        ]
+      },
+      {
+        no:19, level:"a22", title:"Wohin gehen wir heute?",
+        topic:"Kulturelle Veranstaltungen • Etkinlikler ve öneri",
+        tags:["Lokale Adverbien","Kültür","Etkinlik"],
+        note:"Ünite videoları klasöründe 19–20 adına ayrı uzun ders kaydı bulunmuyor.",
+        videos:[
+          ["grammar","Kısa Gramer","Lokale Adverbien","drive","1VDxaX9QUIBLbe04gU4KmITYNiMT72m_9"],
+          ["speaking","Konuşma","Kültür Sanat Hakkında Konuşma Kalıpları","drive","1Hep9N-f9agLai0GbH8gbueCG3JwN7Hnd"]
+        ]
+      },
+      {
+        no:20, level:"a22", title:"Ich durfte eigentlich keine Comics lesen.",
+        topic:"Bücher und Presse • Kitap, basın ve geçmişte yeterlilik",
+        tags:["Präteritum","Modalverben","Fikir"],
+        note:"Ünite videoları klasöründe 19–20 adına ayrı uzun ders kaydı bulunmuyor.",
+        videos:[
+          ["grammar","Kısa Gramer","Präteritum","drive","1Qof2D3pGnR0Bw95dx6_8gf79NsxRLLDz"],
+          ["speaking","Konuşma","Fikir Belirtme Hakkında Konuşma Kalıpları","drive","1j0fBOixbw2sf5U2Qi0bbJu-1VZeifK8X"]
+        ]
+      },
+      {
+        no:21, level:"a22", title:"Ja genau, den meine ich.",
+        topic:"Staat und Verwaltung • Resmî işlemler ve belgeler",
+        tags:["welch-","lassen","Resmî işlemler"],
+        videos:[
+          ["lesson","Ünite Dersi","Ünite 21–22","drive","19T4R9xNN2V9lSbtAgdHZdoazrJqL4Xgj"],
+          ["grammar","Kısa Gramer","Welch – Alle","drive","1H5VC0RaspO8Z7yD0gfsRjkDDvko_lLiG"],
+          ["grammar","Kısa Gramer","Das Verb lassen","drive","1V7nBSNba96q4MfYoQb1UVdUx4NqMa5iI"],
+          ["speaking","Konuşma","Nezaket Hakkında Konuşma Kalıpları","drive","1YPJcNQ5EurzaMMN7kCXofy3MBfwPm6_K"]
+        ]
+      },
+      {
+        no:22, level:"a22", title:"Seit ich meinen Wagen verkauft habe, ...",
+        topic:"Mobilität und Verkehr • Ulaşım ve zaman bağlantıları",
+        tags:["Konnektoren","Ulaşım","Seyahat"],
+        videos:[
+          ["lesson","Ünite Dersi","Ünite 21–22","drive","19T4R9xNN2V9lSbtAgdHZdoazrJqL4Xgj"],
+          ["grammar","Kısa Gramer","Konnektoren / Bağlaçlar","drive","1P8DGTq1jX3_Ajh7Q0zHUwFHSa8MJM5HZ"],
+          ["speaking","Konuşma","Seyahat Hakkında Konuşma Kalıpları","drive","1I2oi89z8k_3VoM3xaKtz0JZrL1Jnl4O6"]
+        ]
+      },
+      {
+        no:23, level:"a22", title:"Der Beruf, der zu mir passt.",
+        topic:"Ausbildung und Beruf • Eğitim, meslek ve başvuru",
+        tags:["Relativsatz","Başvuru","Meslek"],
+        note:"Relativsatz için arşivde birebir kısa gramer videosu bulunmuyor. Ünite dosyasının adı Drive'da “23-34 ünite” olarak kayıtlıdır.",
+        videos:[
+          ["lesson","Ünite Dersi","23–24 Ünite Kaydı","drive","1G3DDLr2CdK37AuQ8dabsDnoFEYHuz9XA"],
+          ["speaking","Konuşma","Başvuru / CV Hakkında Kalıplar","drive","1A9suuHO657hT_CLMUAFJ_Qg6GCUXdJ7J"],
+          ["speaking","Konuşma","İş Dünyası Hakkında Konuşma Kalıpları","drive","1xKUxy2mJ7tHbnnbGQA3f0rhIQHHXcFFp"]
+        ]
+      },
+      {
+        no:24, level:"a22", title:"Wie sah dein Alltag aus?",
+        topic:"Arbeiten im Ausland • Yurtdışında çalışma ve geçmiş iş deneyimi",
+        tags:["Präteritum","İş","Yurtdışı"],
+        videos:[
+          ["lesson","Ünite Dersi","23–24 Ünite Kaydı","drive","1G3DDLr2CdK37AuQ8dabsDnoFEYHuz9XA"],
+          ["grammar","Kısa Gramer","Präteritum","drive","1Qof2D3pGnR0Bw95dx6_8gf79NsxRLLDz"],
+          ["speaking","Konuşma","İş Dünyası Hakkında Konuşma Kalıpları","drive","1xKUxy2mJ7tHbnnbGQA3f0rhIQHHXcFFp"],
+          ["speaking","Konuşma","Yaşam Hakkında Konuşma Kalıpları","drive","1NXWRmiBpW8oCfVSAAWDQh7_GuaETNw9r"]
+        ]
+      }
+    ];
+
+    const unitNotes = {
+      1:{
+        grammar:"Possessivartikel unser/euer/ihr + Perfekt ve Präteritum tekrarı",
+        summary:"Bu ünitede aile üyeleri, meslekler ve geçmişte yaşanan olaylar anlatılır. unser, euer ve ihr gibi iyelik artikelleriyle aile ilişkilerini daha ayrıntılı ifade edersin. Geçmişteki bir durumu war veya hatte ile, tamamlanmış bir eylemi ise çoğunlukla Perfekt ile anlatırsın. Amaç sadece fiil çekmek değil; aile hikâyesini zaman sırasına koyarak doğal biçimde anlatabilmektir.",
+        communication:"Meslek hakkında konuşma, aile hikâyesi anlatma ve olayların sırasını verme.",
+        example:"Mein Opa war Bäcker. Er hat viele Jahre in einer Bäckerei gearbeitet."
+      },
+      2:{
+        grammar:"Wechselpräpositionen: Wo? + Dativ / Wohin? + Akkusativ",
+        summary:"Ev, oda düzeni ve mobilyaların yerini anlatırsın. En önemli mantık Wo? ve Wohin? ayrımıdır. Bir eşya zaten bir yerde bulunuyorsa Dativ; bir şeyi bir yere koyuyor, asıyor veya taşıyorsan Akkusativ kullanılır. stellen/stehen, legen/liegen, hängen gibi fiil çiftleri bu farkı anlamanı kolaylaştırır.",
+        communication:"Bir odanın nasıl düzenleneceğini söyleme, eşyanın yerini tarif etme ve taşınma hakkında konuşma.",
+        example:"Der Schrank steht an der Wand. Ich stelle den Schrank an die Wand."
+      },
+      3:{
+        grammar:"İsim türetme: Verb + -er / Verb + -ung",
+        summary:"Turizm, doğa, şehir ve tatil yerleri üzerinden tercih belirtme ve bir yeri değerlendirme çalışılır. Aynı zamanda bazı fiillerden kişi veya eylem isimlerinin nasıl türetildiğini görürsün. Bu yapı kelime dağarcığını büyütür ve okuma metinlerinde yeni kelimeleri tahmin etmeyi kolaylaştırır.",
+        communication:"Bir yeri değerlendirme, neyi neden tercih ettiğini söyleme ve tatil/aktivite önerisi yapma.",
+        example:"wandern → der Wanderer · beraten → die Beratung"
+      },
+      4:{
+        grammar:"Adjektivdeklination nach indefinitem Artikel",
+        summary:"Alışverişte ürün isteme, miktar söyleme ve yiyecekleri tarif etme çalışılır. ein/eine/einen gibi belirsiz artikellerden sonra sıfat sonu değişir. Buradaki amaç tablo ezberlemekten çok, artikelin verdiği bilgiyi sıfat sonuyla tamamlamaktır. Özellikle market ve şarküteri diyaloglarında çok sık kullanılır.",
+        communication:"Ürün isteme, miktar belirtme, tercih söyleme ve satıcıyla kısa alışveriş diyaloğu kurma.",
+        example:"Ich hätte gern einen milden Käse und eine frische Tomate."
+      },
+      5:{
+        grammar:"Adjektivdeklination nach definitem Artikel",
+        summary:"Şehir gezisi, turistik yerleri tanımlama ve bir plan önerme çalışılır. der/die/das gibi belirli artikellerden sonra sıfat sonlarını doğru kullanırsın. Bu yapı özellikle 'der schöne Dom', 'die alte Kirche' gibi tanımlamalarda karşına çıkar. Amaç bir yeri sadece adlandırmak değil, özelliğiyle birlikte anlatabilmektir.",
+        communication:"Şehirde görülecek yerleri anlatma, bir gezi planı önerme ve bir yeri değerlendirme.",
+        example:"Wir besichtigen den berühmten Dom und die alte Kirche."
+      },
+      6:{
+        grammar:"Temporale Präpositionen: von ... an, über, seit",
+        summary:"Etkinliklerden bahsetme, buluşma önerme, kabul veya reddetme çalışılır. von ... an başlangıç noktasını, über bir süreyi, seit ise geçmişte başlayıp hâlâ süren zamanı anlatır. Bu yapıları doğru kullanmak, randevu ve etkinlik konuşmalarında zamanı net ifade etmeyi sağlar.",
+        communication:"Buluşma önerme, teklif kabul veya reddetme, etkinliğin ne zaman olduğunu söyleme.",
+        example:"Die Ausstellung ist vom 3. Mai an geöffnet. Ich wohne seit zwei Jahren hier."
+      },
+      7:{
+        grammar:"Konjunktiv II: könnte / sollte",
+        summary:"Spor alışkanlıkları, öneri ve tavsiye verme çalışılır. könnte daha yumuşak ve kibar bir öneri verirken sollte daha çok tavsiye anlamı taşır. Böylece emir vermeden fikir sunabilirsin. Günlük plan, spor ve sağlık konuşmalarında bu iki yapı çok işlevseldir.",
+        communication:"Öneri yapma, tavsiye verme, bir planı birlikte kararlaştırma.",
+        example:"Wir könnten montags joggen gehen. Du solltest mehr Wasser trinken."
+      },
+      8:{
+        grammar:"weil / deshalb",
+        summary:"Sağlık, hastalık, endişe ve neden-sonuç ilişkisi anlatılır. weil ile kurulan yan cümlede çekimli fiil sona gider. deshalb ise nedenin sonucunu yeni bir ana cümlede verir. Aynı bilgiyi iki farklı yapıyla söyleyebilmek, konuşmayı daha doğal ve çeşitli hâle getirir.",
+        communication:"Şikâyet belirtme, neden söyleme, endişe veya umut ifade etme.",
+        example:"Ich bleibe zu Hause, weil ich Fieber habe. Ich habe Fieber, deshalb bleibe ich zu Hause."
+      },
+      9:{
+        grammar:"Adjektivdeklination ohne Artikel",
+        summary:"İş hayatı, şirket ve çalışma ortamı anlatılır. Artikelsiz sıfatlarda sıfat sonu, ismin cinsiyetini ve hâlini daha belirgin gösterir. Bu yapı özellikle iş tanımları, ürün özellikleri ve profesyonel metinlerde sık görülür. Burada temel amaç bir işi veya ürünü daha ayrıntılı tarif etmektir.",
+        communication:"İş yerini anlatma, işin önemini belirtme ve bir çalışma ortamını betimleme.",
+        example:"Wir produzieren moderne Autos mit neuer Technik."
+      },
+      10:{
+        grammar:"dass-Sätze",
+        summary:"Restoranda rezervasyon, sipariş, rica ve şikâyet dili çalışılır. dass ile kurulan yan cümlede çekimli fiil sona gider. Bu yapı bir düşünceyi, beklentiyi veya bilgiyi başka bir cümleye bağlamanı sağlar. Özellikle 'iyi ki...', 'umarım...' gibi ifadelerde çok kullanışlıdır.",
+        communication:"Rezervasyon yapma, sipariş verme, şikâyet etme ve hesap isteme.",
+        example:"Gut, dass du reserviert hast. Ich hoffe, dass das Essen gleich kommt."
+      },
+      11:{
+        grammar:"Reflexive Verben",
+        summary:"Firma tanıtımı, ürün ve hizmetlerden bahsetme; memnuniyet ve değerlendirme ifadeleri çalışılır. sich freuen, sich interessieren gibi dönüşlü fiillerde zamir özneye göre değişir. Bu fiilleri edatlarıyla birlikte öğrenmek, cümleyi doğru kurmanın en kolay yoludur.",
+        communication:"Bir şeyi değerlendirme, tebrik etme, teşekkür etme ve kurumsal bir ortam hakkında konuşma.",
+        example:"Ich freue mich über die Nachricht. Wir interessieren uns für neue Produkte."
+      },
+      12:{
+        grammar:"wenn-Sätze",
+        summary:"Beslenme ve günlük alışkanlıkları karşılaştırma çalışılır. Tekrarlanan veya koşula bağlı durumlarda wenn kullanılır ve yan cümlede fiil sona gider. Bu yapı 'ne zaman/şart gerçekleşirse ne olur?' mantığıyla öğrenilmelidir.",
+        communication:"Beslenme alışkanlıklarını anlatma ve iki alışkanlığı karşılaştırma.",
+        example:"Wenn es warm ist, essen wir meist Salat."
+      },
+      13:{
+        grammar:"als-Sätze",
+        summary:"Dil öğrenme deneyimleri ve geçmişte bir kez gerçekleşen olaylar anlatılır. Geçmişteki tek seferlik dönem veya olaylarda als kullanılır. wenn ile karıştırmamak önemlidir: geçmişte belirli bir dönem veya tek olay anlatılıyorsa als daha uygundur.",
+        communication:"Dil öğrenme deneyimlerinden söz etme ve geçmişteki bir öğrenme sürecini anlatma.",
+        example:"Als ich klein war, habe ich Englisch gelernt."
+      },
+      14:{
+        grammar:"Passiv Präsens: werden + Partizip II",
+        summary:"Posta, paket ve gönderim işlemleri anlatılır. Eylemi yapan kişi önemli değilse veya bilinmiyorsa Passiv kullanılır. werden çekilir, asıl fiil Partizip II biçiminde sona gider. Böylece 'kim yaptı?' yerine 'ne yapılıyor?' sorusuna odaklanırsın.",
+        communication:"Bir işlem sırasını anlatma, paket ve posta işlemlerini açıklama.",
+        example:"Das Päckchen wird gepackt. Die Briefe werden verschickt."
+      },
+      15:{
+        grammar:"Dativ- und Akkusativobjekte",
+        summary:"Medya ve televizyon alışkanlıkları üzerinden iki nesneli cümleler çalışılır. 'Kime?' sorusu Dativ, 'neyi?' sorusu Akkusativ olur. İsimler ve zamirler bir arada olduğunda kelime sırası değişebilir. Bu mantığı oturtmak, schenken, geben, zeigen, empfehlen gibi çok kullanılan fiilleri kolaylaştırır.",
+        communication:"Medya alışkanlıklarını anlatma, bir şeyi birine önerme veya gösterme.",
+        example:"Ich schenke meinem Freund eine DVD. Ich schenke sie ihm."
+      },
+      16:{
+        grammar:"Indirekte Fragen: ob / W-Frage",
+        summary:"Otelde rezervasyon yapmak ve kibar bilgi istemek çalışılır. Dolaylı sorularda fiil yan cümlenin sonuna gider. Evet-hayır sorularını ob ile, soru kelimeli soruları ise aynı W-Frage kelimesiyle bağlarsın. Bu yapı resmî ve kibar iletişimde çok önemlidir.",
+        communication:"Otel odası ayırtma, resepsiyondan bilgi isteme ve yol tarifini anlama.",
+        example:"Darf ich fragen, ob noch ein Zimmer frei ist? Wissen Sie, wann das Frühstück beginnt?"
+      },
+      17:{
+        grammar:"Lokale Präpositionen: Wo? / Wohin?",
+        summary:"Seyahat ve ulaşım anlatılır. Bir yere hareket ile bir yerde bulunmayı ayırarak Akkusativ ve Dativ kullanırsın. 'ans Meer / am Meer', 'in die Schweiz / in der Schweiz' gibi çiftleri birlikte öğrenmek en pratik yöntemdir.",
+        communication:"Seyahat alışkanlıklarını anlatma, rota ve tatil yeri hakkında konuşma.",
+        example:"Wir fahren ans Meer. Im Urlaub waren wir am Meer."
+      },
+      18:{
+        grammar:"Verben mit Präpositionen + Präpositionaladverbien",
+        summary:"Hava ve iklim hakkında konuşurken sich freuen auf, sprechen über, träumen von gibi fiil-edat kalıpları kullanılır. Bir şeyden söz ederken worauf/darauf, wovon/davon gibi birleşik biçimler kullanılır; kişilerde ise edat + kişi zamiri tercih edilir.",
+        communication:"Hava durumu hakkında konuşma, memnuniyet veya şikâyet belirtme.",
+        example:"Worauf freust du dich? – Ich freue mich auf den Sommer."
+      },
+      19:{
+        grammar:"Lokale Präpositionen: Woher? – vom / aus dem",
+        summary:"Kültürel etkinliklere gitme, öneri yapma ve birini ikna etme çalışılır. wo, wohin ve woher ayrımı burada birlikte görülür. Özellikle bir etkinlikten veya mekândan nereden geldiğini anlatırken vom ve aus dem yapıları öne çıkar.",
+        communication:"Bir etkinlik önermek, birini ikna etmek ve öneriye olumlu/olumsuz tepki vermek.",
+        example:"Ich komme vom Konzert. Wir kommen aus dem Theater."
+      },
+      20:{
+        grammar:"Modalverben im Präteritum",
+        summary:"Kitap ve basın üzerinden geçmişte izin, zorunluluk, istek ve yapabilme anlatılır. durfte, konnte, musste, wollte gibi biçimler günlük geçmiş anlatımında Perfekt yerine çok sık kullanılır. Özellikle modal fiillerde Präteritum doğal ve pratiktir.",
+        communication:"İlgi veya ilgisizlik belirtme ve geçmişte neleri yapabildiğini/yapamadığını anlatma.",
+        example:"Als Kind durfte ich keine Comics lesen. Ich musste früh schlafen."
+      },
+      21:{
+        grammar:"welch-/dies- + Demonstrativpronomen + lassen",
+        summary:"Resmî işlemler, belgeler ve bir şeyi tarif ederek seçme çalışılır. welcher/dieser ile belirli bir kişi veya nesneyi işaret edersin. lassen ise 'bir şeyi yaptırmak' veya 'bir şeyi bırakmak' gibi anlamlarda kullanılır. Resmî daire ve servis konuşmalarında oldukça işlevseldir.",
+        communication:"Belge veya nesne tarif etme, açıklama isteme ve resmî bilgi alma.",
+        example:"Welchen Ausweis meinen Sie? – Diesen hier. Ich lasse mein Auto reparieren."
+      },
+      22:{
+        grammar:"seit / seitdem",
+        summary:"Ulaşım ve günlük hayattaki değişiklikler anlatılır. Geçmişte başlayan ve bugüne etkisi devam eden durumlarda seit veya seitdem kullanılır. seit çoğunlukla isimle, seitdem ise yan cümleyle kullanılabilir. Böylece bir değişimin başlangıcını ve sonucunu birlikte anlatırsın.",
+        communication:"Bir değişikliği açıklama ve ulaşım alışkanlıklarını karşılaştırma.",
+        example:"Seit ich meinen Wagen verkauft habe, fahre ich mit dem Bus."
+      },
+      23:{
+        grammar:"Relativsatz: Nominativ und Akkusativ",
+        summary:"Eğitim, meslek ve başvuru konuları üzerinden kişi ve şeyleri daha ayrıntılı tanımlama çalışılır. Relativ zamiri önceki isme göre seçilir; yan cümlede fiil sona gider. Bu yapı kısa iki cümleyi daha doğal tek bir cümlede birleştirmeni sağlar.",
+        communication:"Meslek seçimi hakkında konuşma, memnuniyet veya memnuniyetsizlik ifade etme.",
+        example:"Das ist der Beruf, der zu mir passt. Ich suche einen Kurs, den ich abends besuchen kann."
+      },
+      24:{
+        grammar:"Präteritum: regelmäßige und unregelmäßige Verben",
+        summary:"Yurtdışında çalışma ve geçmiş iş deneyimleri anlatılır. Özellikle yazılı anlatımda sık görülen Präteritum biçimleriyle geçmiş günlük hayat tarif edilir. war, hatte, kam, ging, sagte gibi sık kullanılan fiilleri bütün bir hikâye içinde görmek bu konuyu daha kolaylaştırır.",
+        communication:"Geçmiş günlük hayatı anlatma, yurtdışı deneyimini değerlendirme ve memnuniyet/memnuniyetsizlik ifade etme.",
+        example:"Früher arbeitete ich in Wien. Danach ging ich nach Berlin."
+      }
+    };
+
+    const iconMap = {
+      lesson:"▶",
+      grammar:"G",
+      speaking:"🗣"
+    };
+
+    function escapeHtml(value) {
+      return String(value)
+        .replaceAll("&","&amp;")
+        .replaceAll("<","&lt;")
+        .replaceAll(">","&gt;")
+        .replaceAll('"',"&quot;")
+        .replaceAll("'","&#039;");
+    }
+
+    function sourceUrl(type,id) {
+      if (type === "youtube") return `https://www.youtube.com/watch?v=${id}`;
+      return `https://drive.google.com/file/d/${id}/view`;
+    }
+
+    function embedUrl(type,id) {
+      if (type === "youtube") return `https://www.youtube.com/embed/${id}?autoplay=1&rel=0`;
+      return `https://drive.google.com/file/d/${id}/preview`;
+    }
+
+    function renderVideo(video) {
+      const [kind,label,name,type,id] = video;
+      const direct = sourceUrl(type,id);
+
+      return `
+        <div class="video">
+          <div class="video-kind ${kind}">${iconMap[kind] || "▶"}</div>
+          <div class="video-copy">
+            <strong>${escapeHtml(name)}</strong>
+            <span>${escapeHtml(label)}</span>
+          </div>
+          <div class="video-btns">
+            <button
+              class="small-btn"
+              type="button"
+              title="Sayfada izle"
+              aria-label="${escapeHtml(name)} videosunu aç"
+              onclick='openPlayer(${JSON.stringify(name)},${JSON.stringify(type)},${JSON.stringify(id)})'
+            >▶</button>
+            <a
+              class="small-btn"
+              href="${direct}"
+              target="_blank"
+              rel="noopener"
+              title="Yeni sekmede aç"
+              aria-label="${escapeHtml(name)} videosunu yeni sekmede aç"
+            >↗</a>
+          </div>
+        </div>
+      `;
+    }
+
+    function renderPrimaryLesson(video) {
+      if (!video) {
+        return `
+          <div class="primary-lesson">
+            <div class="primary-lesson-top">
+              <div class="primary-lesson-icon">▶</div>
+              <div class="primary-lesson-copy">
+                <span>Ana ünite dersi</span>
+                <strong>Bu ünite için ayrı ana ders kaydı bulunmuyor.</strong>
+                <small>Aşağıdaki konu anlatımı ve mevcut destek videolarını kullanabilirsin.</small>
+              </div>
+            </div>
+          </div>
+        `;
+      }
+
+      const [, ,name,type,id] = video;
+      const direct = sourceUrl(type,id);
+
+      return `
+        <div class="primary-lesson">
+          <div class="primary-lesson-top">
+            <div class="primary-lesson-icon">▶</div>
+            <div class="primary-lesson-copy">
+              <span>Ana ünite dersi</span>
+              <strong>${escapeHtml(name)}</strong>
+              <small>Bu ünitenin temel ders kaydı. Önce bunu izlemen önerilir.</small>
+            </div>
+          </div>
+          <div class="primary-lesson-actions">
+            <button
+              class="primary-play"
+              type="button"
+              onclick='openPlayer(${JSON.stringify(name)},${JSON.stringify(type)},${JSON.stringify(id)})'
+            >▶ Ünite Dersini İzle</button>
+
+            <a
+              class="primary-external"
+              href="${direct}"
+              target="_blank"
+              rel="noopener"
+            >Yeni sekmede aç ↗</a>
+          </div>
+        </div>
+      `;
+    }
+
+    function renderUnit(unit) {
+      const info = unitNotes[unit.no] || {};
+      const lessonVideo = unit.videos.find(v => v[0] === "lesson");
+      const secondaryVideos = unit.videos.filter(v => v !== lessonVideo);
+      const note = unit.note ? `<div class="unit-note">${escapeHtml(unit.note)}</div>` : "";
+
+      return `
+        <article class="unit-accordion" id="unit-${unit.no}" data-unit="${unit.no}" data-level="${unit.level}">
+          <button
+            class="unit-accordion-head"
+            type="button"
+            onclick="toggleUnit(this)"
+            aria-expanded="false"
+          >
+            <div class="unit-index">${String(unit.no).padStart(2,"0")}</div>
+
+            <div class="unit-head-copy">
+              <span>${unit.level === "a21" ? "A2.1" : "A2.2"} • Ünite ${String(unit.no).padStart(2,"0")}</span>
+              <strong>${escapeHtml(unit.title)}</strong>
+              <small>${escapeHtml(unit.topic)}</small>
+            </div>
+
+            <div class="unit-chevron">⌄</div>
+          </button>
+
+          <div class="unit-accordion-body">
+            <div class="lesson-brief">
+              <div class="brief-label">Kısa konu anlatımı</div>
+              <h3>${escapeHtml(info.grammar || unit.topic)}</h3>
+              <p>${escapeHtml(info.summary || "")}</p>
+
+              ${info.communication ? `
+                <div class="brief-communication">
+                  <span>Bu ünitede ne yapabilmelisin?</span>
+                  <p>${escapeHtml(info.communication)}</p>
+                </div>
+              ` : ""}
+
+              ${info.example ? `
+                <div class="brief-example">
+                  <span>Örnek</span>
+                  ${escapeHtml(info.example)}
+                </div>
+              ` : ""}
+            </div>
+
+            ${renderPrimaryLesson(lessonVideo)}
+
+            ${secondaryVideos.length ? `
+              <div class="support-section">
+                <div class="video-section-title">Destek videoları</div>
+                <div class="video-list">
+                  ${secondaryVideos.map(renderVideo).join("")}
+                </div>
+              </div>
+            ` : ""}
+
+            ${note}
+          </div>
+        </article>
+      `;
+    }
+
+    let activeLevelFilter = "all";
+
+    function renderUnitList() {
+      const list = document.getElementById("unitList");
+      if (!list) return;
+
+      const filtered = units.filter(
+        u => activeLevelFilter === "all" || u.level === activeLevelFilter
+      );
+
+      let html = "";
+      filtered.forEach((unit,index) => {
+        if (
+          activeLevelFilter === "all" &&
+          (index === 0 || filtered[index - 1].level !== unit.level)
+        ) {
+          html += `<div class="level-divider">${unit.level === "a21" ? "A2.1 • Ünite 1–12" : "A2.2 • Ünite 13–24"}</div>`;
+        }
+        html += renderUnit(unit);
+      });
+
+      list.innerHTML = html;
+    }
+
+    function closeOtherUnits(current) {
+      document.querySelectorAll(".unit-accordion.open").forEach(other => {
+        if (other !== current) {
+          other.classList.remove("open");
+          other.querySelector(".unit-accordion-head")?.setAttribute("aria-expanded","false");
+        }
+      });
+    }
+
+    function toggleUnit(button) {
+      const unit = button.closest(".unit-accordion");
+      const wasOpen = unit.classList.contains("open");
+
+      closeOtherUnits(unit);
+      unit.classList.toggle("open", !wasOpen);
+      button.setAttribute("aria-expanded", String(!wasOpen));
+
+      if (!wasOpen) {
+        history.replaceState(null,"",`#unit-${unit.dataset.unit}`);
+
+        requestAnimationFrame(() => {
+          const topbar = document.querySelector(".topbar");
+          const offset = (topbar ? topbar.offsetHeight : 0) + 12;
+          const y = unit.getBoundingClientRect().top + window.scrollY - offset;
+          window.scrollTo({ top:y, behavior:"smooth" });
+        });
+      }
+    }
+
+    function restoreUnitFromHash() {
+      const match = location.hash.match(/^#unit-(\d+)$/);
+      if (!match) return;
+
+      const unitNo = Number(match[1]);
+      const targetData = units.find(u => u.no === unitNo);
+      if (!targetData) return;
+
+      if (activeLevelFilter !== "all" && activeLevelFilter !== targetData.level) {
+        activeLevelFilter = "all";
+        document.querySelectorAll(".level-tab").forEach(tab => {
+          tab.classList.toggle("active",tab.dataset.levelFilter === "all");
+        });
+        renderUnitList();
+      }
+
+      const target = document.getElementById(`unit-${unitNo}`);
+      if (!target) return;
+
+      target.classList.add("open");
+      target.querySelector(".unit-accordion-head")?.setAttribute("aria-expanded","true");
+
+      setTimeout(() => {
+        const topbar = document.querySelector(".topbar");
+        const offset = (topbar ? topbar.offsetHeight : 0) + 12;
+        window.scrollTo({
+          top:target.getBoundingClientRect().top + window.scrollY - offset
+        });
+      },80);
+    }
+
+
+    document.addEventListener("DOMContentLoaded",() => {
+      renderUnitList();
+
+      document.querySelectorAll(".level-tab").forEach(tab => {
+        tab.addEventListener("click",() => {
+          activeLevelFilter = tab.dataset.levelFilter;
+          document.querySelectorAll(".level-tab").forEach(t => {
+            t.classList.toggle("active",t === tab);
+          });
+          renderUnitList();
+          history.replaceState(null,"","#unitList");
+          window.scrollTo({
+            top:document.getElementById("unitList").getBoundingClientRect().top + window.scrollY - 90,
+            behavior:"smooth"
+          });
+        });
+      });
+
+      document.getElementById("videoDialog")?.addEventListener("click",event => {
+        if (event.target === event.currentTarget) closePlayer();
+      });
+
+      restoreUnitFromHash();
+    });
+
+
+    let currentExternalUrl = "";
+
+    function openPlayer(title,type,id) {
+      const dialog = document.getElementById("videoDialog");
+      const frame = document.getElementById("videoFrame");
+
+      currentExternalUrl = sourceUrl(type,id);
+      document.getElementById("videoTitle").textContent = title;
+      frame.src = embedUrl(type,id);
+
+      document.getElementById("externalBtn").onclick = () => {
+        window.open(currentExternalUrl,"_blank","noopener");
+      };
+
+      if (typeof dialog.showModal === "function") {
+        dialog.showModal();
+      } else {
+        window.open(currentExternalUrl,"_blank","noopener");
+      }
+    }
+
+    function closePlayer() {
+      const dialog = document.getElementById("videoDialog");
+      const frame = document.getElementById("videoFrame");
+      if (frame) frame.src = "";
+      if (dialog?.open) dialog.close();
+    }
+
+    window.toggleUnit = toggleUnit;
+    window.openPlayer = openPlayer;
+    window.closePlayer = closePlayer;
+  </script>
+</body>
+</html>
