@@ -252,7 +252,7 @@
           <button type="button" data-nav="resources">Tüm kaynaklar <span aria-hidden="true">→</span></button>
         </div>
         <div class="home-resource-grid">
-          ${homeResourceCard("Canlı ders kayıtları", "Kaçırdığın dersleri yeniden izle.", "https://kurs.aydadil.com/Eski", "▶", "coral")}
+          ${homeResourceCard("Canlı ders kayıtları", "Kaçırdığın dersleri yeniden izle.", "https://kurs.aydadil.com/", "▶", "coral")}
           ${homeResourceCard("Online kütüphane", "Ders materyallerine hızlı ulaş.", "https://www.aydadil.com/bibliothek/", "▤", "sky")}
           ${homeResourceCard("Sınav hazırlık", "A2 sınav çalışmalarını aç.", "https://www.aydadil.com/sinavhazirlik/", "◎", "lime")}
         </div>
@@ -309,7 +309,7 @@
         <h1 id="resourcesTitle">Ders, video ve sınav kaynakları</h1>
         <p>Canlı ders kayıtları, A2 video klasörleri, kütüphane ve sınav platformu tek yerde.</p>
         <div class="resource-actions">
-          ${resourceAction("Canlı Ders Kayıtları", "https://kurs.aydadil.com/Eski")}
+          ${resourceAction("Canlı Ders Kayıtları", "https://kurs.aydadil.com/")}
           ${resourceAction("Online Kütüphane", "https://www.aydadil.com/bibliothek/")}
           ${resourceAction("Sınav Hazırlık", "https://www.aydadil.com/sinavhazirlik/")}
         </div>
@@ -323,7 +323,7 @@
           ["A2 Konuşma Kalıpları", "https://drive.google.com/drive/folders/1v1KnsUELnxaqwKEhN_8ruqGDOkHbrYFG?usp=sharing"]
         ], true)}
         ${resourceGroup("Ders Videoları ve Konu Anlatımları", "Ders tekrarları, Menschen A2 videoları ve kısa gramer anlatımları.", "▶", [
-          ["Canlı Ders Kayıtları", "https://kurs.aydadil.com/Eski"],
+          ["Canlı Ders Kayıtları", "https://kurs.aydadil.com/"],
           ["A2 Menschen Ders Videoları", "https://drive.google.com/drive/folders/10KGAPnOKlfd3trMtY4paFsJDCbGNok9k?usp=drive_link"],
           ["A2 Konu Anlatım Videoları", "https://drive.google.com/drive/folders/1dkvJRQmwMAy4-xima2GhujCnFhRwq63B?usp=drive_link"],
           ["Arbeitsbuch Dinlemeleri Nasıl İndirilir?", "https://youtu.be/GHf6eOr6MU0"]
@@ -603,7 +603,7 @@
               <h3>AYDA bağlantıları</h3>
               <p>Ders kaydı, kütüphane ve sınav çalışmasına buradan geç.</p>
               <div class="unit-resource-links">
-                <a href="https://kurs.aydadil.com/Eski" target="_blank" rel="noopener noreferrer"><span>Canlı ders kayıtları</span><b aria-hidden="true">↗</b></a>
+                <a href="https://kurs.aydadil.com/" target="_blank" rel="noopener noreferrer"><span>Canlı ders kayıtları</span><b aria-hidden="true">↗</b></a>
                 <a href="https://www.aydadil.com/bibliothek/" target="_blank" rel="noopener noreferrer"><span>Online kütüphane</span><b aria-hidden="true">↗</b></a>
                 <a href="https://www.aydadil.com/sinavhazirlik/" target="_blank" rel="noopener noreferrer"><span>Sınav hazırlık</span><b aria-hidden="true">↗</b></a>
               </div>
