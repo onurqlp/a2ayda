@@ -46,6 +46,25 @@ try {
   await context.close();
   console.log("PASS "+w+"x"+h+" / cards 24 / groups 4x6 / video / progress / no overflow");
  }
+ // Confirm that the public GitHub Pages preview resolves and renders the A2 app.
+ const live=await browser.newPage({viewport:{width:390,height:844}});
+ const liveURL="https://onurqlp.github.io/a2ayda/preview/?v=20261016-a2u1#unit-1";
+ const publicResponse=await live.goto(liveURL,{waitUntil:"domcontentloaded",timeout:45000});
+ check(publicResponse?.status()===200,"Public preview HTTP status "+publicResponse?.status());
+ await live.locator(".ayda-group-progress").waitFor({state:"attached",timeout:20000});
+ // Student authentication remains unchanged. Show the already-rendered
+ // app only inside this isolated test browser context for UI inspection.
+ await live.evaluate(()=>{
+   document.getElementById("aydaLoginBox").style.display="none";
+   document.getElementById("aydaProtectedContent").style.display="block";
+ });
+ await live.locator(".ayda-group-progress").waitFor({state:"visible",timeout:10000});
+ check(await live.locator(".question-dot:visible").count()===6,"Public preview group layout not visible");
+ const checkOverflow=await live.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+2);
+ check(checkOverflow,"Public preview mobile horizontal overflow");
+ await live.screenshot({path:"preview/test-results/a2-live-390.png",fullPage:true});
+ console.log("PASS public GitHub Pages preview HTTP 200 / A2 groups / 390px responsive");
+ await live.close();
 } catch(error) {
  issues.push(error.stack||error.message||String(error));
  console.error(issues.join("\n"));
