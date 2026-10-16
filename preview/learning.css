@@ -170,3 +170,46 @@ html:not(.ayda-is-unit) .ayda-study-dock {display:none}
 .ayda-learning-page .practice-option{border-radius:11px;min-height:48px}
 .ayda-group-footer{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:12px;padding:13px;background:#edf3f7;border:1px solid #dce3e9;border-radius:12px;color:#526578;font-size:12px}
 .ayda-group-footer .ayda-flow-cta{flex:none}
+
+/* Phone/tablet access, without changing the original exercise DOM */
+.ayda-learning-page .unit-complete-actions{background:#fff;border:1px solid #dce3e9;border-radius:12px;padding:14px}
+.ayda-learning-page .unit-side>section{border-radius:13px;box-shadow:none}
+.ayda-learning-page .unit-side .side-card{background:#edf3f7}
+.ayda-learning-page .practice-question-actions{padding:0 18px 18px}
+.ayda-learning-page .practice-input-label input,.ayda-learning-page .practice-textarea{border-radius:11px}
+.ayda-study-dock button:focus-visible,.ayda-flow-steps button:focus-visible,.ayda-group-tabs button:focus-visible{outline:3px solid #E8C37B;outline-offset:2px}
+@media(max-width:760px){
+ .ayda-learning-page .unit-layout{display:flex;flex-direction:column;gap:13px}
+ .ayda-learning-page .unit-main{width:100%;order:1;gap:12px}
+ .ayda-learning-page .unit-side{width:100%;order:2;display:grid;grid-template-columns:1fr;gap:12px}
+ .ayda-learning-page .unit-side .side-card{grid-column:auto}
+ .ayda-learning-page .unit-video-hub-inner{grid-template-columns:minmax(0,1fr)}
+ .ayda-learning-page .unit-video-tabs{grid-template-columns:1fr}
+ .ayda-learning-page .unit-video-tab{grid-template-columns:auto minmax(0,1fr);min-height:55px}
+}
+@media(max-width:560px){
+ .app-shell{width:calc(100% - 24px);padding-top:16px}
+ .unit-grid{grid-template-columns:1fr}
+ .home-intro,.unit-hero{padding:22px 18px;border-radius:16px}
+ .home-intro h1,.unit-title h1{font-size:clamp(28px,8vw,37px)}
+ .ayda-flowbar{grid-template-columns:1fr;gap:6px;padding:7px}
+ .ayda-flow-next{min-height:43px;width:100%}
+ .ayda-flow-steps button{min-height:43px;font-size:12px}
+ .ayda-step-footer{flex-direction:column;align-items:stretch}
+ .ayda-step-footer .ayda-flow-cta{min-height:46px;width:100%}
+ .ayda-group-tabs{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .ayda-group-tabs button{min-height:44px}
+ .ayda-group-footer{flex-direction:column;align-items:stretch}
+ .ayda-group-footer .ayda-flow-cta{width:100%}
+ .ayda-study-dock{width:calc(100% - 12px);gap:2px;padding:4px;bottom:max(5px,env(safe-area-inset-bottom))}
+ .ayda-study-dock button{min-height:51px;padding:6px 2px;font-size:10px;gap:3px}
+ .ayda-study-dock .ayda-study-next{font-size:11px}
+ .ayda-learning-page>.summary-details,.ayda-learning-page #unitVideoHub,.ayda-learning-page .practice-heading-v2,.ayda-learning-page .practice-area{scroll-margin-top:76px}
+}
+@media(max-width:360px){
+ .ayda-study-dock button span{display:none}
+ .ayda-learning-page .question-map{gap:4px;padding:7px}
+}
+@media(prefers-reduced-motion:reduce){
+ .ayda-learning-page *,.ayda-study-dock *{scroll-behavior:auto!important;transition:none!important}
+}
