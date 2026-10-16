@@ -56,6 +56,8 @@
     if (check) { check.click(); area.scrollIntoView({behavior:"smooth",block:"start"}); return; }
     const forward = area?.querySelector(".practice-question-actions [data-question-next]");
     if (forward) { forward.click(); return; }
+    const onward = area?.querySelector("[data-ayda-next-unit]");
+    if (onward) { onward.click(); return; }
     const complete = area?.querySelector("[data-complete-unit]:not([disabled])");
     if (complete) { complete.click(); return; }
     area?.scrollIntoView({behavior:"smooth",block:"start"});
@@ -104,6 +106,19 @@
     if (originalHeading) originalHeading.textContent = "Alıştırma zamanı";
     setActive(page, "learn");
   }
+  function addNextUnitAction(page) {
+    const area = page.querySelector("#practiceArea");
+    const complete = area?.querySelector("[data-complete-unit]");
+    const actions = area?.querySelector(".unit-complete-actions");
+    if (!complete || !actions || !complete.textContent.includes("tamamlandı") || actions.querySelector("[data-ayda-next-unit]")) return;
+    const id = Number(page.dataset.unitId);
+    const onward = document.createElement("button");
+    onward.type = "button";
+    onward.className = "ayda-flow-cta";
+    onward.setAttribute("data-ayda-next-unit", id < 24 ? String(id+1) : "units");
+    onward.textContent = id < 24 ? "Ünite " + (id+1) + "'e geç →" : "Üniteleri gör →";
+    actions.append(onward);
+  }
   function decorateCards() {
     app.querySelectorAll(".unit-card:not([data-ayda-card-ready])").forEach((card) => {
       card.setAttribute("data-ayda-card-ready", "1");
@@ -125,7 +140,7 @@
     requestAnimationFrame(() => {
       pending = false;
       const page = activePage();
-      if (page) decorateUnit(page);
+      if (page) { decorateUnit(page); addNextUnitAction(page); }
       decorateCards();
       syncStage();
     });
@@ -133,11 +148,14 @@
   const observer = new MutationObserver(scheduleEnhance);
   observer.observe(app, {childList:true,subtree:true});
   document.addEventListener("click", (event) => {
-    const button = event.target.closest("[data-ayda-go], [data-ayda-next]");
+    const button = event.target.closest("[data-ayda-go], [data-ayda-next], [data-ayda-next-unit]");
     if (!button) return;
     const page = button.closest(".unit-page") || activePage();
     if (!page) return;
-    if (button.hasAttribute("data-ayda-next")) next(page);
+    if (button.hasAttribute("data-ayda-next-unit")) {
+      const id = button.dataset.aydaNextUnit;
+      window.location.hash = id === "units" ? "units" : "unit-" + id;
+    } else if (button.hasAttribute("data-ayda-next")) next(page);
     else go(page, button.dataset.aydaGo);
   });
   window.addEventListener("scroll", syncStage, {passive:true});
