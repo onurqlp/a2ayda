@@ -3,6 +3,13 @@ on:
   push:
     paths:
       - "preview/**"
+      - "index.html"
+      - "learning.css"
+      - "learning.js"
+      - "parity.css"
+      - "parity.js"
+      - "ayda-brand.js"
+      - "scripts/check-a2-integrity.mjs"
       - ".github/workflows/a2-preview-smoke.yml"
   workflow_dispatch:
 permissions:
@@ -16,6 +23,8 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: "22"
+      - name: Verify original 24 units, 576 exercises, 72 videos and safe preview
+        run: node scripts/check-a2-integrity.mjs
       - name: Install Playwright and Chromium
         run: |
           npm install --no-save playwright

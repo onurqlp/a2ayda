@@ -46,6 +46,66 @@ try {
   await context.close();
   console.log("PASS "+w+"x"+h+" / cards 24 / groups 4x6 / video / progress / no overflow");
  }
+ // A1/B1 design parity must be real and clickable, not just cosmetic styling.
+ {
+  const context=await browser.newContext({viewport:{width:390,height:844},isMobile:true,hasTouch:true});
+  const page=await context.newPage();
+  const errors=[];
+  page.on("pageerror",error=>errors.push(error.message));
+  await page.goto(base+"#home",{waitUntil:"domcontentloaded"});
+  await page.locator("#a2B1Grid .a2-b1-unit-card").first().waitFor({timeout:16000});
+  check(await page.locator("#a2B1Grid .a2-b1-unit-card").count()===24,
+    "A2 homepage must show all 24 A2 units directly, like B1.");
+  check(JSON.stringify(await page.locator(".a2-shared-nav>button").allTextContents())===
+    JSON.stringify(["Video + Alıştırma","AYDA Kaynakları","İlerleme"]),
+    "Top navigation should exactly match A1/B1 labels and order.");
+  check(await page.locator("#a2AYDABrand").count()===1,"AYDA original logo not mounted.");
+  check(await page.locator("#a2SharedPill").textContent()==="24 Ünite",
+    "A2 shared level pill missing.");
+  check(await page.locator("#kaynaklar .home-resource-card").count()===3,
+    "The three AYDA resource destinations must remain visible on homepage.");
+  check(await page.locator(".bottom-nav").evaluate(el=>getComputedStyle(el).display)==="none",
+    "Original separate bottom navigation should not conflict with common top navigation.");
+  await page.locator('[data-a2-filter="A2.2"]').click();
+  check(await page.locator("#a2B1Grid .a2-b1-unit-card").count()===12,
+    "A2.2 catalog must contain 12 units.");
+  const ids=await page.locator("#a2B1Grid .a2-b1-unit-card").evaluateAll(els=>els.map(n=>Number(n.dataset.unit)));
+  check(ids.every((id,i)=>id===i+13),"A2.2 must show exactly units 13–24.");
+  await page.locator('[data-a2-filter="all"]').click();
+  check(await page.locator("#a2B1Grid .a2-b1-unit-card").count()===24,
+    "All-unit filter must restore 24 cards.");
+  await page.screenshot({path:"preview/test-results/a2-b1-home-390.png",fullPage:false});
+  await page.locator('#a2B1Grid .a2-b1-unit-card[data-unit="13"] button').click();
+  await page.locator('.unit-page[data-unit-id="13"] #a2B1DetailTop').waitFor({timeout:12000});
+  check((await page.locator(".unit-page .unit-video-tab").count())===3,
+    "A2 lesson 13 lost its three original video choices.");
+  check((await page.locator(".unit-page .question-dot").count())===24,
+    "A2 lesson 13 lost an original question.");
+  check((await page.locator(".unit-page .ayda-flowbar").count())===1,
+    "A2 must keep the visible B1-style Learn/Video/Practice controls.");
+  await page.locator("#a2B1DetailTop .a2-b1-back").click();
+  await page.waitForURL(/#units$/);
+  check(await page.locator(".unit-card").count()===24,"Original 8-module catalog no longer available.");
+  await page.locator(".a2-more summary").click();
+  await page.locator(".a2-more-items button:nth-child(2)").click();
+  await page.waitForURL(/#help$/);
+  check(await page.locator("#helpTitle").count()===1,"Original help resources lost.");
+  await page.locator(".a2-more summary").click();
+  await page.locator(".a2-more-items button:nth-child(1)").click();
+  await page.waitForURL(/#resources$/);
+  check(await page.locator("#resourcesTitle").count()===1,"Original A2 resources lost.");
+  await page.locator("#homeButton").click();
+  await page.waitForURL(/#home$/);
+  await page.locator("#a2B1Grid .a2-b1-unit-card").first().waitFor();
+  await page.locator('[data-shared-link="uniteler"]').click();
+  const inView=await page.locator("#uniteler").evaluate(el=>{const r=el.getBoundingClientRect();return r.bottom>100&&r.top<innerHeight});
+  check(inView,"Main Video + Alıştırma shortcut did not scroll to catalog.");
+  check(await page.evaluate(()=>document.documentElement.scrollWidth<=window.innerWidth+2),
+    "Shared B1-style A2 page overflows mobile viewport.");
+  check(errors.length===0,"New A2 navigation errors: "+errors.join(" | "));
+  await context.close();
+  console.log("PASS shared A1/B1/A2 menu · 24 cards · filters · A2 resources · mobile layout");
+ }
  // Confirm that the public GitHub Pages preview resolves and renders the A2 app.
  const live=await browser.newPage({viewport:{width:390,height:844}});
  const liveURL="https://onurqlp.github.io/a2ayda/preview/?v=20261016-a2u1#unit-1";

@@ -1,0 +1,432 @@
+/* AYDA A2 · Visually identical shared A1/B1 academy interface.
+   Presentation only; A2 curricula, exercises, videos and progression untouched. */
+:root{
+ --navy:#102541;
+ --navy-2:#173755;
+ --ink:#162e45;
+ --muted:#607487;
+ --cream:#fbf9f5;
+ --paper:#fff;
+ --white:#fff;
+ --line:#dbe4eb;
+ --lime:#e8c37b;
+ --coral:#e8c37b;
+ --sky:#edf5fb;
+ --green:#19776b;
+ --shadow-sm:0 7px 24px #0b1b310b;
+ --shadow-md:0 12px 32px #0b1b3117;
+ --radius-md:17px;
+ --radius-lg:19px;
+ --content:1120px;
+}
+html{background:var(--cream);scroll-padding-top:120px}
+body{background:var(--cream);color:var(--ink)}
+button,a,summary{touch-action:manipulation}
+button:focus-visible,a:focus-visible,summary:focus-visible{
+ outline:3px solid #e8c37b!important;outline-offset:3px
+}
+.site-header{
+ background:#0b1b31;
+ border-bottom:1px solid #ffffff1c;
+ backdrop-filter:none;
+ padding:0;
+ z-index:100
+}
+.site-header .header-inner{
+ width:min(1120px,calc(100% - 36px));
+ min-height:72px;
+ gap:18px;
+ display:flex;
+ align-items:center;
+ flex-wrap:nowrap
+}
+.site-header .brand-button{min-height:49px;gap:10px;flex:0 0 auto;max-width:42vw}
+.site-header .brand-button #a2AYDABrand{
+ display:block;width:125px;height:43px;object-fit:contain;flex:none
+}
+.site-header .brand-button:has(#a2AYDABrand) .brand-mark{display:none}
+.site-header .brand-copy strong{color:#fff;font-size:12px;letter-spacing:0}
+.site-header .brand-copy small{color:#d4e0e9;font-size:10px}
+.site-header .header-actions{display:none}
+.a2-shared-nav{display:flex;align-items:center;gap:17px;margin-left:auto;min-width:0}
+.a2-shared-nav>button,.a2-shared-nav .a2-more>summary{
+ display:flex;align-items:center;justify-content:center;
+ min-height:44px;padding:8px 3px;background:transparent;color:#e5edf4;
+ border:0;border-radius:7px;white-space:nowrap;
+ font-size:13px;font-weight:700;cursor:pointer
+}
+.a2-shared-nav>button:hover,
+.a2-shared-nav>button.active,
+.a2-shared-nav .a2-more>summary:hover{color:#e8c37b}
+.a2-shared-pill{
+ display:inline-flex;align-items:center;flex:0 0 auto;
+ border:1px solid #33506c;border-radius:100px;
+ padding:7px 11px;background:#193552;color:#f6e3b8;
+ font-size:12px;font-weight:750;white-space:nowrap
+}
+.a2-more{position:relative}
+.a2-more>summary{list-style:none}
+.a2-more>summary::-webkit-details-marker{display:none}
+.a2-more-items{
+ display:grid;gap:3px;position:absolute;right:0;top:calc(100% + 7px);
+ width:210px;padding:6px;border:1px solid #dce5ec;border-radius:12px;
+ background:white;box-shadow:0 13px 35px #0b1b3130;color:#102541;z-index:140
+}
+.a2-more-items button{
+ min-height:43px;border:0;border-radius:8px;background:white;
+ color:#173755;font-size:12px;font-weight:750;text-align:left;padding:10px 12px;cursor:pointer
+}
+.a2-more-items button:hover{background:#edf4f9}
+.bottom-nav{display:none!important}
+.site-footer{border-top:1px solid #dbe4eb;background:#f3f6f8;color:#50667b}
+.site-footer strong{color:#102541}
+.login-shell{background:linear-gradient(175deg,#fbf9f5,#eff3f7)}
+.login-card{border:1px solid #dbe4eb;border-top:5px solid #e8c37b;border-radius:20px;box-shadow:0 18px 48px #10254121}
+.login-brand-row .brand-mark{display:grid;place-items:center;border-radius:12px;background:#102541}
+.login-brand-row .brand-mark:has(img){min-width:170px;max-width:60vw;width:170px;height:66px}
+.login-brand-row .brand-mark img{max-width:148px;max-height:50px;width:100%;height:auto;object-fit:contain}
+.login-card h1{color:#102541}
+.login-card .login-button{background:#102541;color:#fff}
+.login-card .login-button:hover{background:#1a3b5b}
+.app-shell{width:min(1120px,calc(100% - 36px));padding:18px 0 65px}
+.dashboard-hero,.home-intro{
+ background:linear-gradient(110deg,#0b1b31,#173755);
+ border-radius:0 0 22px 22px;box-shadow:0 8px 25px #0b1b3118;
+ min-height:0;align-items:start;gap:27px;
+ padding:30px 34px;
+ grid-template-columns:minmax(0,1.5fr) minmax(250px,.6fr)
+}
+.home-intro::after,.unit-hero::after{display:none}
+.home-intro .eyebrow{font-size:11px;color:#e8c37b;letter-spacing:.1em}
+.dashboard-hero h1{
+ font-size:clamp(30px,3.6vw,43px);
+ letter-spacing:-.035em;line-height:1.15
+}
+.home-intro .intro-copy{font-size:15px;line-height:1.6;color:#d6e3ec;max-width:59ch}
+.dashboard-hero .secondary-button.dashboard-cta{
+ min-height:48px;margin-top:17px;border:0;border-radius:11px;
+ background:#e8c37b;color:#102541;font-size:14px;padding:10px 16px;
+ box-shadow:none
+}
+.dashboard-hero .secondary-button.dashboard-cta:hover{background:#f1d89f}
+.dashboard-hero .stat-card{
+ align-self:stretch;background:#ffffff12;color:white;
+ border:1px solid #ffffff2a;border-radius:15px;padding:23px;box-shadow:none
+}
+.dashboard-hero .stat-card small,.dashboard-hero .stat-card .stat-footnote,
+.dashboard-hero .stat-card .stat-footnote strong{color:#d9e3eb}
+.dashboard-hero .stat-card strong{color:white}
+.dashboard-hero .stat-card .level-pill{
+ background:#193552;border:1px solid #33506c;color:#e8c37b
+}
+.dashboard-hero .stat-card .progress-track{background:#ffffff35;height:8px}
+.dashboard-hero .stat-card .progress-track>span{background:#e8c37b}
+.home-resource-strip{
+ margin:16px auto 22px;border:1px solid #dce5ec;border-radius:18px;
+ background:#fff;padding:22px;box-shadow:none
+}
+.home-resource-heading{align-items:flex-start;margin-bottom:15px}
+.home-resource-heading .eyebrow{font-size:11px;letter-spacing:.09em;color:#9c7937}
+.home-resource-heading h2{font-size:clamp(21px,3vw,25px);color:#102541}
+.home-resource-heading button{
+ min-height:44px;background:#f3f7fa;color:#214d75;
+ border:1px solid #dbe5ed;border-radius:10px;font-size:12px
+}
+.home-resource-grid{gap:10px}
+.home-resource-card{
+ min-height:155px;grid-template-columns:1fr;
+ align-content:start;gap:10px;border:0;border-radius:13px;
+ box-shadow:none;padding:17px;position:relative;
+ color:#102541;background:#edf5fb
+}
+.home-resource-card:first-child{background:#102541;color:white}
+.home-resource-card:nth-child(2){background:#f8f1df;color:#17334d}
+.home-resource-card:nth-child(3){background:#edf5fb;color:#214d75}
+.home-resource-card .home-resource-icon{
+ width:35px;height:35px;border-radius:8px;
+ background:#ffffff25;font-size:14px
+}
+.home-resource-card>span:nth-child(2){display:grid;gap:5px}
+.home-resource-card strong{font-size:16px;line-height:1.35}
+.home-resource-card small{font-size:12px;line-height:1.55;opacity:.85}
+.home-resource-card .home-resource-arrow{
+ position:absolute;right:17px;bottom:16px;font-weight:800
+}
+/* Direct 24-unit learning catalog: matches A1/B1 grid, cards and filters */
+.a2-b1-catalog{width:100%;margin:14px 0}
+.a2-b1-section-heading{
+ display:flex;justify-content:space-between;align-items:flex-start;
+ gap:25px;margin:15px 0 12px
+}
+.a2-b1-eyebrow{
+ color:#947031;font-size:11px;font-weight:850;
+ letter-spacing:.09em;margin:0 0 5px
+}
+.a2-b1-section-heading h2{
+ font-size:clamp(23px,3vw,29px);line-height:1.25;
+ letter-spacing:-.025em;color:#102541;margin:0
+}
+.a2-b1-section-heading>p{
+ max-width:330px;font-size:13px;line-height:1.65;
+ color:#62778c;margin:0
+}
+.a2-b1-filter{display:flex;gap:6px;margin-bottom:13px;flex-wrap:wrap}
+.a2-b1-filter button{
+ min-height:43px;padding:9px 15px;background:white;border:1px solid #d8e2eb;
+ color:#35516c;border-radius:9px;font-size:12px;font-weight:780;cursor:pointer
+}
+.a2-b1-filter button.active{background:#102541;color:white;border-color:#102541}
+.a2-b1-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:13px}
+.a2-b1-unit-card{
+ display:flex;flex-direction:column;min-width:0;min-height:292px;
+ border:1px solid #d9e3e9;border-radius:17px;background:white;
+ box-shadow:0 7px 24px #0b1b3108;padding:20px;
+ transition:transform .15s,border-color .15s
+}
+.a2-b1-unit-card:hover{border-color:#9aafc4;transform:translateY(-1px)}
+.a2-b1-card-top{display:flex;align-items:center;justify-content:space-between;gap:8px}
+.a2-b1-number{font-size:24px;font-weight:900;color:#214d75}
+.a2-b1-status{font-size:12px;font-weight:750;color:#61798c}
+.a2-b1-topic{font-size:12px;color:#61758a;line-height:1.5;margin:10px 0 6px}
+.a2-b1-title{font-size:18px;color:#102541;line-height:1.35;margin:0 0 13px}
+.a2-b1-tags{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:5px}
+.a2-b1-tags span{
+ padding:6px 9px;border-radius:7px;background:#edf5fb;color:#355978;
+ font-size:11px;font-weight:750
+}
+.a2-b1-card-flow{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}
+.a2-b1-card-flow span{
+ border-radius:7px;padding:6px 9px;background:#edf5fb;
+ color:#214d75;font-size:11px;font-weight:750
+}
+.a2-b1-card-flow span:last-child{background:#fcf3db;color:#87641e}
+.a2-b1-track{
+ height:7px;background:#e8edf2;border-radius:100px;
+ margin:16px 0 13px;overflow:hidden;margin-top:auto
+}
+.a2-b1-track span{display:block;height:100%;background:#19776b}
+.a2-b1-card-button{
+ min-height:48px;border:0;border-radius:11px;padding:10px 13px;
+ color:white;background:#102541;font-size:12px;font-weight:800;
+ text-align:center;cursor:pointer
+}
+.a2-b1-card-button:hover{background:#1a3b5b}
+.a2-b1-method{
+ background:#eef3f7;border-radius:18px;
+ padding:26px;margin:20px 0 30px
+}
+.a2-b1-method h2{
+ color:#102541;font-size:clamp(23px,3vw,27px);
+ line-height:1.25;margin:3px 0 0
+}
+.a2-b1-method-grid{
+ display:grid;grid-template-columns:repeat(3,minmax(0,1fr));
+ gap:16px;margin-top:18px
+}
+.a2-b1-method article{
+ border:1px solid #dbe5ed;border-radius:11px;background:white;padding:15px
+}
+.a2-b1-method article b{color:#9b752c;font-size:17px}
+.a2-b1-method article h3{font-size:16px;margin:5px 0}
+.a2-b1-method article p{color:#596e80;line-height:1.65;font-size:13px;margin:0}
+/* Original three A2 utility cards are still here; keep visually secondary. */
+.dashboard-section{margin:14px 0 18px}
+.dashboard-section .compact-heading{margin-bottom:12px}
+.dashboard-section .compact-heading h2{color:#102541;font-size:21px}
+.dashboard-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.dashboard-card,.dashboard-card.dashboard-card-wide{
+ min-height:92px;grid-column:auto;
+ border:1px solid #d9e3eb;border-radius:13px;background:#fff;
+ box-shadow:0 5px 18px #0b1b3109;padding:15px 16px;gap:10px
+}
+.dashboard-card strong{color:#102541;font-size:14px}
+.dashboard-card small{color:#61758a;font-size:12px}
+.dashboard-card-index{color:#9e752e;font-size:12px}
+.study-plan{background:#f1f5f8;border-radius:15px;box-shadow:none;padding:20px}
+.study-plan h2{font-size:22px;color:#102541}
+.study-plan ol li{border-radius:11px}
+/* B1 dark lesson top and hero, while retaining all original A2 UI below. */
+body[data-a2-shared-view="unit"] .site-header{display:none!important}
+body[data-a2-shared-view="unit"] .app-shell{
+ width:100%;max-width:none;padding:0 0 140px
+}
+body[data-a2-shared-view="unit"] .unit-page{
+ width:min(1120px,100%);
+ max-width:none;margin:0 auto;padding-top:0
+}
+body[data-a2-shared-view="unit"] .unit-page>.back-button{display:none!important}
+#a2B1DetailTop{
+ position:sticky;top:0;z-index:95;
+ min-height:66px;background:#0b1b31;color:white;
+ display:flex;align-items:center;gap:18px;
+ padding:10px 16px;margin:0 0 17px
+}
+.a2-b1-back{
+ min-height:44px;border:0;border-radius:7px;padding:7px 5px;
+ background:transparent;color:white;font-size:13px;font-weight:800;
+ cursor:pointer;text-align:left;white-space:nowrap
+}
+.a2-b1-detail-track{
+ height:7px;background:#334960;border-radius:30px;
+ overflow:hidden;flex:1 1 auto
+}
+.a2-b1-detail-track span{
+ display:block;height:100%;background:#e8c37b
+}
+#a2B1DetailTop>b{min-width:33px;text-align:right;font-size:13px}
+body[data-a2-shared-view="unit"] .unit-hero{
+ margin:0 16px 12px;padding:28px 32px;
+ background:linear-gradient(110deg,#0b1b31,#173755);
+ border-radius:18px;min-height:0;box-shadow:none;
+ grid-template-columns:minmax(0,1.5fr) minmax(240px,.6fr);
+ gap:24px
+}
+body[data-a2-shared-view="unit"] .unit-title h1{
+ font-size:clamp(29px,3.7vw,45px);line-height:1.17
+}
+body[data-a2-shared-view="unit"] .unit-title .eyebrow{color:#e8c37b}
+body[data-a2-shared-view="unit"] .unit-title .unit-subtitle{
+ font-size:15px;color:#dce6ef;line-height:1.5
+}
+body[data-a2-shared-view="unit"] .score-panel{
+ background:#ffffff13;border:1px solid #ffffff26;border-radius:12px;padding:14px
+}
+body[data-a2-shared-view="unit"] .score-panel strong{color:white}
+body[data-a2-shared-view="unit"] .score-panel small{color:#dae5ed}
+body[data-a2-shared-view="unit"] .unit-hero .progress-track{background:#ffffff30}
+body[data-a2-shared-view="unit"] .unit-hero .progress-track span{background:#e8c37b}
+body[data-a2-shared-view="unit"] .ayda-flowbar,
+body[data-a2-shared-view="unit"] .summary-details,
+body[data-a2-shared-view="unit"] .unit-video-hub,
+body[data-a2-shared-view="unit"] .unit-layout,
+body[data-a2-shared-view="unit"] .ayda-step-footer{
+ width:calc(100% - 32px);
+ max-width:1000px;margin-left:auto;margin-right:auto
+}
+body[data-a2-shared-view="unit"] .ayda-flowbar{
+ border:1px solid #dbe5ec;border-radius:13px;padding:11px;box-shadow:none
+}
+body[data-a2-shared-view="unit"] .ayda-flow-steps button{
+ background:#f4f7fa;color:#102541;border-color:#dbe5ec;border-radius:10px
+}
+body[data-a2-shared-view="unit"] .ayda-flow-steps button[aria-current="step"]{
+ background:#102541;color:white;border-color:#102541
+}
+body[data-a2-shared-view="unit"] .ayda-flow-steps button[aria-current="step"] span{
+ color:#102541;background:#e8c37b
+}
+body[data-a2-shared-view="unit"] .unit-video-hub{
+ background:#edf3f8;color:#102541;border:1px solid #dbe5ec;
+ padding:22px;border-radius:16px
+}
+body[data-a2-shared-view="unit"] .unit-video-hub .video-hub-heading h2{color:#102541}
+body[data-a2-shared-view="unit"] .video-player-shell{background:#0b1b31}
+body[data-a2-shared-view="unit"] .video-hub-heading .eyebrow{color:#9d7935}
+body[data-a2-shared-view="unit"] .video-count-pill{background:#fff;color:#214d75}
+body[data-a2-shared-view="unit"] .unit-video-tab{background:white;color:#102541}
+body[data-a2-shared-view="unit"] .unit-video-tab.active{background:#fff9eb;border-color:#d2ae67}
+body[data-a2-shared-view="unit"] .ayda-group-progress,
+body[data-a2-shared-view="unit"] .practice-question-card{border-color:#dbe5ec;box-shadow:none}
+body[data-a2-shared-view="unit"] .ayda-flow-cta,
+body[data-a2-shared-view="unit"] .ayda-flow-next{background:#102541;color:#fff}
+body[data-a2-shared-view="unit"] .ayda-study-dock{
+ background:#0b1b31;border-radius:15px
+}
+body[data-a2-shared-view="unit"] .ayda-study-dock .ayda-study-next{
+ background:#e8c37b;color:#102541
+}
+/* Phone and desktop should share information structure without horizontal overflow. */
+@media(max-width:900px){
+ .site-header .header-inner{gap:10px}
+ .a2-shared-nav{gap:7px}
+ .a2-shared-nav>button,.a2-shared-nav .a2-more>summary{font-size:12px}
+ .app-shell{width:calc(100% - 28px)}
+ .dashboard-grid{grid-template-columns:1fr 1fr}
+ .a2-b1-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+ body[data-a2-shared-view="unit"] .unit-hero{grid-template-columns:1fr}
+}
+@media(max-width:700px){
+ html{scroll-padding-top:127px}
+ .site-header .header-inner{
+  display:flex;flex-wrap:wrap;gap:4px 9px;
+  min-height:0;padding:8px 0 4px;width:calc(100% - 26px)
+ }
+ .site-header .brand-button{order:1;max-width:58vw;min-height:42px}
+ .site-header .brand-button #a2AYDABrand{width:124px;height:41px}
+ .site-header .brand-copy strong{font-size:11px}
+ .site-header .brand-copy small{display:none}
+ .a2-shared-pill{order:2;margin-left:auto;font-size:11px;padding:6px 8px}
+ .a2-shared-nav{
+  order:3;width:100%;min-height:42px;gap:3px;margin:0;
+  justify-content:flex-start;overflow-x:auto;scrollbar-width:none;
+  -webkit-overflow-scrolling:touch;padding:0 0 1px
+ }
+ .a2-shared-nav::-webkit-scrollbar{display:none}
+ .a2-shared-nav>button,.a2-shared-nav .a2-more>summary{
+  font-size:12px;padding:8px 9px;min-height:41px
+ }
+ .a2-more-items{
+  position:fixed;right:9px;top:105px;
+  width:min(230px,calc(100vw - 18px))
+ }
+ .app-shell{width:calc(100% - 24px);padding:11px 0 45px}
+ .dashboard-hero,.home-intro{
+  padding:20px 18px;border-radius:16px;
+  display:flex;flex-direction:column;gap:17px
+ }
+ .dashboard-hero h1{font-size:32px;line-height:1.15}
+ .home-intro .intro-copy{font-size:14px}
+ .dashboard-cta{margin-top:13px}
+ .dashboard-hero .stat-card{width:100%;padding:16px}
+ .home-resource-strip{margin:13px 0 17px;padding:16px;border-radius:14px}
+ .home-resource-heading{display:block}
+ .home-resource-heading h2{font-size:22px}
+ .home-resource-heading button{margin-top:9px;font-size:12px}
+ .home-resource-grid{grid-template-columns:1fr}
+ .home-resource-card{
+  min-height:0;grid-template-columns:auto minmax(0,1fr) 18px;
+  align-items:center;padding:14px;gap:10px
+ }
+ .home-resource-card strong{font-size:14px}
+ .home-resource-card .home-resource-arrow{position:static}
+ .a2-b1-section-heading{display:block;margin:17px 0 11px}
+ .a2-b1-section-heading h2{font-size:23px}
+ .a2-b1-section-heading>p{margin-top:8px;font-size:12px;max-width:none}
+ .a2-b1-filter button{min-height:43px;font-size:11px;padding:8px 11px}
+ .a2-b1-grid{grid-template-columns:1fr;gap:10px}
+ .a2-b1-unit-card{min-height:0;padding:17px}
+ .a2-b1-number{font-size:22px}
+ .a2-b1-title{font-size:17px}
+ .a2-b1-topic{margin-top:6px}
+ .a2-b1-track{margin-top:13px}
+ .a2-b1-method{margin:18px 0;padding:18px}
+ .a2-b1-method h2{font-size:22px}
+ .a2-b1-method-grid{grid-template-columns:1fr;gap:9px}
+ .a2-b1-method article{padding:12px}
+ .dashboard-grid{grid-template-columns:1fr;gap:8px}
+ .dashboard-card,.dashboard-card.dashboard-card-wide{min-height:78px;grid-column:auto;padding:12px 14px}
+ .study-plan{padding:15px}
+ body[data-a2-shared-view="unit"] .unit-page{padding:0 0 110px}
+ #a2B1DetailTop{min-height:58px;margin-bottom:10px;padding:8px 12px;gap:9px}
+ .a2-b1-back{font-size:12px}
+ body[data-a2-shared-view="unit"] .unit-hero{
+  margin:0 12px 10px;padding:19px 17px;border-radius:14px
+ }
+ body[data-a2-shared-view="unit"] .unit-title h1{font-size:28px}
+ body[data-a2-shared-view="unit"] .unit-title .unit-subtitle{font-size:13px}
+ body[data-a2-shared-view="unit"] .ayda-flowbar,
+ body[data-a2-shared-view="unit"] .summary-details,
+ body[data-a2-shared-view="unit"] .unit-video-hub,
+ body[data-a2-shared-view="unit"] .unit-layout,
+ body[data-a2-shared-view="unit"] .ayda-step-footer{
+  width:calc(100% - 24px)
+ }
+ body[data-a2-shared-view="unit"] .unit-video-hub{padding:14px}
+}
+@media(max-width:370px){
+ .a2-shared-nav>button,.a2-shared-nav .a2-more>summary{font-size:11px;padding:8px 6px}
+ .dashboard-hero h1{font-size:29px}
+}
+@media(prefers-reduced-motion:reduce){
+ .a2-b1-unit-card{transition:none}
+}
