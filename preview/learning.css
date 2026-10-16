@@ -146,3 +146,27 @@ html:not(.ayda-is-unit) .ayda-study-dock {display:none}
 .ayda-study-dock button[aria-current="step"] {background:#ffffff1c;color:#E8C37B}
 .ayda-study-dock .ayda-study-next {background:#E8C37B;color:#102541;padding:8px 6px;font-size:12px}
 .ayda-is-unit .site-footer {padding-bottom:125px}
+
+/* A2: four six-question stages */
+.ayda-group-progress{background:#fff;border:1px solid #dce3e9;border-radius:15px;padding:17px;margin-bottom:12px}
+.ayda-gp-heading{display:flex;justify-content:space-between;align-items:center;gap:12px}
+.ayda-gp-heading h3{margin:4px 0 0;font-size:18px;color:#102541}
+.ayda-gp-heading strong{white-space:nowrap;font-size:16px;color:#102541}
+.ayda-gp-eyebrow{font-size:10px;color:#805923;font-weight:850;letter-spacing:.1em}
+.ayda-group-progress>p{margin:8px 0;font-size:12px;color:#526578}
+.ayda-gp-track{height:6px;background:#e5eaed;border-radius:99px;overflow:hidden}
+.ayda-gp-track span{display:block;width:0;height:100%;background:#19776b;border-radius:99px}
+.ayda-group-tabs{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:6px;margin:12px 0 4px}
+.ayda-group-tabs button{display:flex;align-items:center;justify-content:space-between;gap:4px;min-height:46px;padding:7px 8px;background:#f4f6f8;border:1px solid #dce3e9;border-radius:10px;color:#102541;font-size:11px;font-weight:800;text-align:left;cursor:pointer}
+.ayda-group-tabs button[aria-current="step"]{background:#fbefd9;border-color:#E8C37B}
+.ayda-group-tabs button small{color:#526578;font-size:10px;white-space:nowrap}
+.ayda-learning-page .question-map{grid-template-columns:repeat(6,minmax(0,1fr));gap:7px;padding:10px;border:1px solid #dce3e9;border-radius:12px;box-shadow:none;background:#fff;margin-bottom:10px}
+.ayda-learning-page .question-dot[hidden]{display:none!important}
+.ayda-learning-page .question-dot{border-radius:10px;min-height:43px}
+.ayda-learning-page .question-dot.active{background:#102541;border-color:#102541;box-shadow:none}
+.ayda-learning-page .practice-question-card{border-radius:15px;border-color:#dce3e9;box-shadow:none}
+.ayda-learning-page .practice-question-head{background:#edf3f7;padding:15px 18px}
+.ayda-learning-page .practice-question-body{padding:19px}
+.ayda-learning-page .practice-option{border-radius:11px;min-height:48px}
+.ayda-group-footer{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:12px;padding:13px;background:#edf3f7;border:1px solid #dce3e9;border-radius:12px;color:#526578;font-size:12px}
+.ayda-group-footer .ayda-flow-cta{flex:none}
