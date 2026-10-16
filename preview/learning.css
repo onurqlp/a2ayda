@@ -48,3 +48,63 @@
   .ayda-learning-page .practice-question-actions button {min-height:48px}
 }
 @media(prefers-reduced-motion:reduce){.ayda-learning-page * {scroll-behavior:auto!important}}
+
+/* AYDA B1 ortak görünümü — yalnızca A2 önizleme */
+:root {
+ --navy:#102541; --navy-2:#193753; --ink:#142b44; --muted:#526578;
+ --cream:#FBF9F5; --paper:#fff; --white:#fff; --line:#dce3e9;
+ --coral:#E8C37B; --coral-dark:#805923; --lime:#E8C37B;
+ --radius-sm:12px; --radius-md:17px; --radius-lg:21px;
+ --shadow-sm:0 6px 22px #1025410e; --shadow-md:0 12px 32px #10254118;
+}
+html {scroll-padding-top:90px}
+body {background:#FBF9F5;color:#142b44;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;overflow-x:clip}
+.site-header {background:#0b1b31;border-bottom:1px solid #ffffff21;box-shadow:0 5px 20px #0b1b3122}
+.header-inner {min-height:66px}
+.brand-button .brand-mark {background:#E8C37B;color:#102541;border-radius:11px;box-shadow:none;width:39px;height:39px}
+.brand-copy strong,.header-progress {color:#fff}
+.brand-copy small {color:#dee7ef}
+.header-progress .mini-progress span {background:#E8C37B}
+.icon-button {background:#ffffff16;color:#fff;border-color:#ffffff33}
+.app-shell {width:min(calc(100% - 32px),1100px);padding-top:24px}
+.login-shell {background:#FBF9F5}
+.login-shell::before,.login-shell::after {display:none}
+.login-card {background:#fff;border-radius:22px;box-shadow:0 14px 44px #10254117}
+.login-card .brand-mark {box-shadow:none;background:#102541}
+.login-card .level-pill {background:#f7ead2;color:#805923}
+.login-card .login-button {background:#E8C37B;color:#102541}
+.home-intro,.unit-hero {background:linear-gradient(120deg,#0b1b31,#193957);box-shadow:none;border-radius:20px;padding:clamp(22px,4vw,35px);gap:18px}
+.home-intro::after,.unit-hero::after {display:none}
+.home-intro .eyebrow,.unit-title .eyebrow {color:#E8C37B}
+.home-intro h1 {font-size:clamp(29px,4vw,44px);line-height:1.12}
+.home-intro p.intro-copy {font-size:15px;margin-top:13px}
+.unit-title h1 {font-size:clamp(28px,4vw,43px);line-height:1.16}
+.unit-subtitle {font-size:14px;margin-top:11px}
+.stat-card,.score-panel {border-radius:15px;padding:18px;box-shadow:none}
+.stat-card strong,.score-panel strong {font-size:30px}
+.score-panel .progress-track span,.stat-card .progress-track span {background:#19776b}
+.home-resource-strip,.view-hero {border:1px solid #dce3e9;border-radius:17px;padding:22px;box-shadow:none;background:#fff}
+.dashboard-grid {gap:12px}
+.dashboard-card,.home-resource-card {border:1px solid #dce3e9;background:#fff;box-shadow:none;border-radius:15px;min-height:0}
+.dashboard-card-wide {background:#fff}
+.dashboard-card-index {background:#102541;color:#E8C37B;border-radius:10px}
+.dashboard-card:nth-child(2) .dashboard-card-index,.dashboard-card:nth-child(3) .dashboard-card-index {background:#eaf1f6;color:#102541}
+.study-plan {background:#edf3f7;color:#142b44;border-radius:17px;padding:22px;gap:18px}
+.study-plan .eyebrow {color:#805923}
+.study-plan h2 {font-size:26px}
+.study-plan li {background:#fff;border-color:#dce3e9;border-radius:12px}
+.study-plan li>span {background:#E8C37B}
+.study-plan li small {color:#526578}
+.unit-grid {gap:12px}
+.unit-card {min-height:0;background:#fff;border:1px solid #dce3e9;box-shadow:none;border-radius:16px;padding:19px}
+.unit-card:hover {transform:translateY(-1px);border-color:#99aab7;box-shadow:0 5px 19px #1025410a}
+.unit-card::before {width:45px;height:45px;opacity:.55}
+.unit-number {background:#102541;color:#fff;border-radius:11px;width:40px;height:40px}
+.unit-card .topic {color:#805923;font-size:11px}
+.unit-card h4 {font-size:18px;margin:13px 0 7px;line-height:1.35}
+.grammar-preview {margin:8px 0 12px;font-size:12px}
+.ayda-unit-card-flow {display:flex;flex-wrap:wrap;gap:5px;margin:0 0 14px}
+.ayda-unit-card-flow span {border-radius:99px;background:#edf3f7;color:#27516a;padding:5px 8px;font-size:10px;font-weight:800}
+.ayda-unit-card-flow span:last-child {background:#fcf0d6;color:#805923}
+.bottom-nav {background:#0b1b31}
+.bottom-nav button.active {background:#E8C37B}
