@@ -6,9 +6,9 @@
   const stages = ["learn", "video", "practice"];
   const labels = ["Öğren", "Video", "Alıştırma"];
   const selector = {
-    learn: ".unit-page > .summary-details",
-    video: ".unit-page > #unitVideoHub",
-    practice: ".unit-page .practice-heading-v2"
+    learn: ".summary-details",
+    video: "#unitVideoHub",
+    practice: ".practice-heading-v2"
   };
   const escapeText = (value) => String(value || "").replace(/[&<>"]/g, (c) => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
   function activePage() { return app.querySelector(".unit-page"); }
@@ -16,7 +16,7 @@
     const threshold = Math.min(190, window.innerHeight * 0.33);
     let active = "learn";
     for (const stage of stages) {
-      const target = page.querySelector(selector[stage].replace(".unit-page ", "").replace(".unit-page > ", ""));
+      const target = page.querySelector(selector[stage]);
       if (target && target.getBoundingClientRect().top <= threshold) active = stage;
     }
     return active;
@@ -41,7 +41,7 @@
       const summary = page.querySelector(".summary-details");
       if (summary) summary.open = true;
     }
-    const target = page.querySelector(selector[stage].replace(".unit-page ", "").replace(".unit-page > ", ""));
+    const target = page.querySelector(selector[stage]);
     if (target) {
       setActive(page, stage);
       target.scrollIntoView({behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth",block:"start"});
