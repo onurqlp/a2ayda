@@ -1,0 +1,37 @@
+name: AYDA A2 Preview Browser Checks
+on:
+  push:
+    paths:
+      - "preview/**"
+      - ".github/workflows/a2-preview-smoke.yml"
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  mobile-preview:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Install Playwright and Chromium
+        run: |
+          npm install --no-save playwright
+          npx playwright install --with-deps chromium
+      - name: Run local A2 preview
+        run: |
+          python3 -m http.server 8765 --bind 127.0.0.1 >/tmp/ayda-a2-http.log 2>&1 &
+          for i in 1 2 3 4 5 6 7 8; do
+            curl -fsS http://127.0.0.1:8765/preview/index.html >/dev/null && break
+            sleep 1
+          done
+          node preview/smoke-test.mjs
+      - name: Save device screenshots
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: ayda-a2-device-screenshots
+          path: preview/test-results/*.png
+          if-no-files-found: ignore
