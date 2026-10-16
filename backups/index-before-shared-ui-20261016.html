@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="tr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#14213d" />
+    <meta
+      name="description"
+      content="AYDA A2: Her ünitede sayfa içinde açılan ders, gramer ve konuşma videoları; 24 ünitede 576 özgün Almanca alıştırması."
+    />
+    <meta property="og:title" content="AYDA A2 Almanca Alıştırma" />
+    <meta
+      property="og:description"
+      content="Videoyu izle, mantığı kavra, 24 soruyu çöz: AYDA A2 Almanca çalışma platformu."
+    />
+    <meta property="og:image" content="./og.png" />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="icon" type="image/png" href="./og.png" />
+    <link rel="stylesheet" href="./styles.css" />
+    <title>AYDA A2 Almanca Alıştırma</title>
+    <script defer src="./data.js"></script>
+    <script defer src="./practice-data.js"></script>
+    <script defer src="./app.js"></script>
+  </head>
+  <body>
+    <section id="aydaLoginBox" class="login-shell" aria-label="AYDA giriş ekranı">
+      <div class="login-card">
+        <div class="login-brand-row">
+          <span class="brand-mark" aria-hidden="true">AY</span>
+          <span class="level-pill">A2</span>
+        </div>
+        <p class="eyebrow">ALMANCA ALIŞTIRMA</p>
+        <h1>Hazırsan başlayalım.</h1>
+        <p class="login-copy">
+          Devam etmek için size verilen sınıf kodunu veya giriş parolasını yazınız.
+        </p>
+
+        <form class="password-row" onsubmit="aydaCheckPassword(); return false;">
+          <label class="sr-only" for="aydaPasswordInput">Giriş parolası</label>
+          <input
+            id="aydaPasswordInput"
+            type="password"
+            placeholder="Giriş parolası"
+            autocomplete="current-password"
+            aria-describedby="aydaLoginMessage"
+          />
+          <button class="primary-button login-button" type="submit">
+            Giriş yap <span aria-hidden="true">→</span>
+          </button>
+        </form>
+
+        <div id="aydaLoginMessage" class="login-message" role="status" aria-live="polite"></div>
+        <p class="login-footnote">72 video · 576 soru · mobil ilerleme kaydı</p>
+      </div>
+    </section>
+
+    <div id="aydaProtectedContent" style="display: none">
+      <a class="skip-link" href="#mainContent">İçeriğe geç</a>
+      <header class="site-header">
+        <div class="header-inner">
+          <button class="brand-button" id="homeButton" type="button" aria-label="Ana sayfaya dön">
+            <span class="brand-mark small" aria-hidden="true">AY</span>
+            <span class="brand-copy">
+              <strong>AYDA A2</strong>
+              <small>Almanca alıştırma</small>
+            </span>
+          </button>
+          <div class="header-actions">
+            <div class="header-progress" aria-label="Genel ilerleme">
+              <span id="headerProgressText">0 / 24</span>
+              <span class="mini-progress"><span id="headerProgressBar"></span></span>
+            </div>
+            <button class="icon-button" id="logoutButton" type="button" aria-label="Oturumu kapat" title="Çıkış">
+              <span aria-hidden="true">↗</span>
+            </button>
+          </div>
+        </div>
+      </header>
+
+      <main id="mainContent" tabindex="-1">
+        <div id="app" class="app-shell" aria-live="polite"></div>
+      </main>
+
+      <footer class="site-footer">
+        <p><strong>AYDA A2</strong> · Her gün kısa bir adım.</p>
+        <button type="button" class="text-button" id="footerResetButton">İlerlemeyi sıfırla</button>
+      </footer>
+
+      <nav class="bottom-nav" aria-label="Ana navigasyon">
+        <button type="button" data-nav="home" aria-label="Ana Sayfa">
+          <span class="bottom-nav-icon" aria-hidden="true">⌂</span>
+          <span>Ana Sayfa</span>
+        </button>
+        <button type="button" data-nav="units" aria-label="Üniteler">
+          <span class="bottom-nav-icon" aria-hidden="true">▦</span>
+          <span>Üniteler</span>
+        </button>
+        <button type="button" data-nav="resources" aria-label="Kaynaklar">
+          <span class="bottom-nav-icon" aria-hidden="true">≡</span>
+          <span>Kaynaklar</span>
+        </button>
+        <button type="button" data-nav="help" aria-label="Yardım">
+          <span class="bottom-nav-icon" aria-hidden="true">?</span>
+          <span>Yardım</span>
+        </button>
+      </nav>
+    </div>
+
+    <div id="toast" class="toast" role="status" aria-live="polite" aria-atomic="true"></div>
+
+    <noscript>
+      <div class="noscript-card">Bu alıştırma sitesi için JavaScript açık olmalıdır.</div>
+    </noscript>
+
+    <script
+      src="https://onurqlp.github.io/ayda-pass/access-control.js"
+      onerror="document.getElementById('aydaLoginMessage').textContent='Şifre sistemi yüklenemedi. İnternet bağlantınızı kontrol edin.'"
+    ></script>
+    <script>
+      if (["localhost", "127.0.0.1"].includes(location.hostname) && new URLSearchParams(location.search).get("preview") === "1") {
+        document.getElementById("aydaLoginBox").style.display = "none";
+        document.getElementById("aydaProtectedContent").style.display = "block";
+      }
+    </script>
+  </body>
+</html>

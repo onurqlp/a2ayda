@@ -1,6 +1,6 @@
 import { chromium } from "playwright";
 import fs from "node:fs";
-const base = "http://127.0.0.1:8765/preview/?preview=1";
+const base = process.env.A2_TEST_ROOT==="1" ? "http://127.0.0.1:8765/?preview=1" : "http://127.0.0.1:8765/preview/?preview=1";
 const sizes=[{w:360,h:780},{w:390,h:844},{w:768,h:1024},{w:1280,h:800}];
 const browser=await chromium.launch({headless:true});
 const issues=[];
