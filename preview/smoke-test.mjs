@@ -102,8 +102,14 @@ try {
   await page.waitForURL(/#home$/);
   await page.locator("#a2B1Grid .a2-b1-unit-card").first().waitFor();
   await page.locator('[data-shared-link="uniteler"]').click();
-  const inView=await page.locator("#uniteler").evaluate(el=>{const r=el.getBoundingClientRect();return r.bottom>100&&r.top<innerHeight});
-  check(inView,"Main Video + Alıştırma shortcut did not scroll to catalog.");
+  await page.waitForFunction(()=>{
+    const el=document.getElementById("uniteler");
+    if(!el)return false;
+    const r=el.getBoundingClientRect();
+    return r.bottom>100&&r.top<innerHeight;
+  },{timeout:8000});
+  check(await page.locator("#uniteler").count()===1,
+    "Main Video + Alıştırma shortcut did not scroll to catalog.");
   check(await page.evaluate(()=>document.documentElement.scrollWidth<=window.innerWidth+2),
     "Shared B1-style A2 page overflows mobile viewport.");
   check(errors.length===0,"New A2 navigation errors: "+errors.join(" | "));
