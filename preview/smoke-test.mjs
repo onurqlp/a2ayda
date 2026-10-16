@@ -85,14 +85,18 @@ try {
     "A2 must keep the visible B1-style Learn/Video/Practice controls.");
   await page.locator("#a2B1DetailTop .a2-b1-back").click();
   await page.waitForURL(/#units$/);
+  await page.waitForFunction(()=>document.querySelectorAll("#app .unit-card").length===24,
+    {timeout:8000});
   check(await page.locator(".unit-card").count()===24,"Original 8-module catalog no longer available.");
   await page.locator(".a2-more summary").click();
   await page.locator(".a2-more-items button:nth-child(2)").click();
   await page.waitForURL(/#help$/);
+  await page.locator("#helpTitle").waitFor({timeout:8000});
   check(await page.locator("#helpTitle").count()===1,"Original help resources lost.");
   await page.locator(".a2-more summary").click();
   await page.locator(".a2-more-items button:nth-child(1)").click();
   await page.waitForURL(/#resources$/);
+  await page.locator("#resourcesTitle").waitFor({timeout:8000});
   check(await page.locator("#resourcesTitle").count()===1,"Original A2 resources lost.");
   await page.locator("#homeButton").click();
   await page.waitForURL(/#home$/);
