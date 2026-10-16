@@ -1,0 +1,49 @@
+/* AYDA A2 | Öğren – Video – Alıştırma
+   Yalnızca /preview/ için; kök dosyalara dokunulmaz. */
+:root { --ayda-gold:#f9cc4a; --ayda-soft:#eef4f8 }
+.ayda-preview-label {display:inline-flex;align-items:center;gap:6px;background:#fff5d7;color:#5c4506;border:1px solid #f4d680;padding:7px 12px;border-radius:999px;font-size:11px;font-weight:850;margin:0 0 15px}
+.unit-page.ayda-learning-page {max-width:var(--content);margin:0 auto;padding-bottom:42px}
+.ayda-learning-page .unit-hero {margin-bottom:0}
+.ayda-flowbar {position:sticky;z-index:35;top:6px;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:10px;align-items:center;margin:14px 0 12px;padding:11px;background:#fff;border:1px solid #e2e7ed;border-radius:17px;box-shadow:0 12px 32px rgba(20,33,61,.12)}
+.ayda-flow-steps {display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:7px;min-width:0}
+.ayda-flow-step {display:flex;align-items:center;justify-content:center;gap:8px;min-width:0;min-height:45px;padding:7px 8px;border:1px solid #dce5ee;border-radius:12px;background:#f6f9fc;color:#14213d;font-size:13px;font-weight:850;cursor:pointer}
+.ayda-flow-step span {display:grid;place-items:center;flex:none;width:23px;height:23px;background:#e7edf3;border-radius:8px;font-size:11px}
+.ayda-flow-step[aria-current="step"] {background:#e6f4ee;border-color:#8dbda9;color:#164d37}
+.ayda-flow-step[aria-current="step"] span {background:#bde6d3}
+.ayda-flow-next,.ayda-flow-cta {display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:45px;border:0;border-radius:12px;padding:10px 17px;background:var(--navy);color:#fff;font-size:13px;font-weight:850;cursor:pointer}
+.ayda-learning-page > .summary-details {width:100%;max-width:100%;margin:14px 0 0;border:1px solid #e0e6ec;border-radius:20px;overflow:hidden;background:#fff;box-shadow:0 8px 24px rgba(20,33,61,.045);scroll-margin-top:93px}
+.ayda-learning-page > .summary-details > summary {min-height:64px;background:#edf5fa;font-size:17px}
+.ayda-learning-page > .summary-details .summary-content {padding:clamp(18px,4vw,28px)}
+.ayda-step-intro {margin:0 0 16px!important;color:#40546a!important;font-size:14px;line-height:1.6}
+.ayda-step-footer {display:flex;justify-content:flex-end;align-items:center;gap:12px;margin:12px 0 18px}
+.ayda-step-caption {color:var(--muted);font-size:12px}
+.ayda-learning-page > #unitVideoHub {margin-top:0;scroll-margin-top:93px}
+.ayda-learning-page .unit-video-hub {padding:clamp(16px,3vw,24px)}
+.ayda-learning-page .unit-layout {margin-top:8px}
+.ayda-learning-page .practice-heading-v2 {scroll-margin-top:94px}
+.ayda-learning-page .practice-area {scroll-margin-top:96px}
+.ayda-practice-guide {display:flex;align-items:center;gap:10px;padding:13px 15px;background:#ecf5f0;border:1px solid #bad9c8;border-radius:14px;margin:12px 0;color:#23563e;font-weight:800;font-size:13px;line-height:1.5}
+.ayda-practice-guide strong {display:grid;place-items:center;flex:none;width:29px;height:29px;border-radius:10px;background:#cee9da}
+.ayda-unit-card-flow {margin:12px 0 14px;display:flex;flex-wrap:wrap;gap:5px}
+.ayda-unit-card-flow span {border-radius:999px;background:#f0f4f8;color:#43546b;padding:6px 9px;font-size:10px;font-weight:850}
+.ayda-unit-card-flow span:first-child {background:#e2f3e9;color:#236b4d}
+.ayda-flow-step:focus-visible,.ayda-flow-next:focus-visible,.ayda-flow-cta:focus-visible{outline:3px solid #74b6e3;outline-offset:2px}
+@media(max-width:800px){
+  .ayda-flowbar {grid-template-columns:1fr;top:0;padding:8px;margin:10px 0}
+  .ayda-flow-next {min-height:42px;width:100%}
+  .ayda-learning-page > .summary-details > summary {font-size:15px}
+  .ayda-step-caption {display:none}
+}
+@media(max-width:480px){
+  .ayda-flow-steps {gap:4px}
+  .ayda-flow-step {flex-direction:column;gap:3px;min-height:50px;padding:5px 2px;font-size:11px;border-radius:10px}
+  .ayda-flow-step span {width:20px;height:20px;border-radius:6px}
+  .ayda-flowbar {border-radius:14px}
+  .ayda-step-footer {margin-bottom:15px}
+  .ayda-flow-cta {width:100%;min-height:48px}
+  .ayda-learning-page .unit-video-hub {padding:12px}
+  .ayda-learning-page .unit-video-hub-inner,.ayda-learning-page .unit-video-tabs {min-width:0}
+  .ayda-learning-page .unit-video-hub iframe {max-width:100%}
+  .ayda-learning-page .practice-question-actions button {min-height:48px}
+}
+@media(prefers-reduced-motion:reduce){.ayda-learning-page * {scroll-behavior:auto!important}}
