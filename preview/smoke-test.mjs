@@ -34,6 +34,7 @@ try {
   const saved=await page.evaluate(()=>JSON.parse(localStorage.getItem("ayda_a2_progress_v2")||"{}")?.[1]?.responses?.q01);
   check(saved?.correct===true,"Original progress record not saved");
   await page.locator('[data-ayda-group="2"]').click();
+  await page.waitForFunction(() => document.querySelectorAll(".question-dot:not([hidden])").length === 6 && document.querySelector(".practice-counter")?.textContent?.includes("13"), {timeout:5000});
   check(await page.locator(".question-dot:visible").count()===6,"Six-question group switching failed");
   check((await page.locator(".practice-counter").textContent())?.includes("13"),"Wrong third-group start");
   await page.reload({waitUntil:"domcontentloaded"});
