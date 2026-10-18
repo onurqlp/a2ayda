@@ -46,6 +46,9 @@ for(const filename of ["learning.js","learning.css","parity.js","parity.css","ay
 assert.ok(approvedHtml.includes("https://onurqlp.github.io/ayda-pass/access-control.js"),
  "Original AYDA password service was removed");
 const root=read("index.html").toString("utf8");
+const expressLink='    <script defer src="./a2-express-shortcut.js"></script>\n';
+assert.equal(root.split(expressLink).length,2,"A2 Express shortcut must appear exactly once.");
+const approvedRoot=root.replace(expressLink,"");
 if(sha(read("index.html"))!==originalRootSha){
  const expected=approvedHtml.replace('      <meta name="robots" content="noindex,nofollow" />\n',"")
   .replaceAll("../data.js","./data.js")
@@ -55,7 +58,7 @@ if(sha(read("index.html"))!==originalRootSha){
   .replaceAll("../og.png","./og.png")
   .replaceAll("./learning.css?v=20261016-a2u1","./learning.css?v=20261016-a2u1")
   .replaceAll("./learning.js?v=20261016-a2u1","./learning.js?v=20261016-a2u1");
- assert.equal(root,expected,"Published A2 must exactly match approved preview without noindex");
+ assert.equal(approvedRoot,expected,"Published A2 must match approved preview except the Express link");
  assert.equal(sha(read("backups/index-before-shared-ui-20261016.html")),originalRootSha,
   "Original A2 live index backup missing");
  for(const path of ["learning.js","learning.css","parity.js","parity.css","ayda-brand.js"])
@@ -63,3 +66,9 @@ if(sha(read("index.html"))!==originalRootSha){
 }
 console.log("PASS: original A2 course, 24 units, 576 questions, 72 videos, passwords, progress are protected.");
 console.log("PASS: shared AYDA A1/B1 design files and safe preview verified.");
+// Express: uses the approved A2 dataset and does not duplicate or mutate the course.
+for(const file of ["express/index.html","express/express.css","express/express.js","a2-express-shortcut.js"])assert.ok(fs.existsSync(file),"A2 Express file missing: "+file);
+const expressHtml=read("express/index.html").toString("utf8");
+for(const source of ["../data.js","../practice-data.js","./express.js","./express.css"])assert.ok(expressHtml.includes(source),"Express missing source "+source);
+assert.ok(read("express/express.js").toString("utf8").includes("ayda_a2_express_progress_v1"),"Express progress storage must be separate.");
+console.log("PASS: A2 Express page references original 576 question dataset and isolated progress.");
