@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0b1b31">
+<meta name="description" content="AYDA Dil Akademisi A2 Komple Alıştırmalar: 24 ünite, 576 özgün soru, Türkçe konu açıklamaları, cevap kontrolü ve kişisel tekrar.">
+<title>A2 Komple Alıştırmalar | AYDA Dil Akademisi</title>
+<link rel="icon" type="image/png" href="../og.png">
+<link rel="stylesheet" href="./express.css">
+<script defer src="../data.js"></script>
+<script defer src="../practice-data.js"></script>
+<script defer src="../ayda-brand.js"></script>
+<script defer src="./express.js"></script>
+</head>
+<body>
+<a class="skip" href="#work">İçeriğe geç</a>
+<header class="mast">
+ <div class="mast-inner">
+  <a class="brand" href="../" aria-label="AYDA A2 ana sayfa"><span class="brand-logo">AY</span><span><b>AYDA <em>DİL AKADEMİSİ</em></b><small>A2 · Komple Alıştırmalar</small></span></a>
+  <div class="mast-actions"><span class="mast-status" id="globalCounter">0 / 576</span><a class="back-link" href="../">A2 Ana Sayfa <span aria-hidden="true">↗</span></a></div>
+ </div>
+</header>
+<main id="work" class="shell">
+ <section class="intro">
+  <div class="eyebrow">AYDA · A2 DİJİTAL ÇALIŞMA KİTABI</div>
+  <div class="intro-grid">
+   <div><h1>A2 Komple Alıştırmalar</h1><p>Konuyu hatırla, soruyu çöz, gerekçeyi öğren. Bütün A2 müfredatı tek çalışma alanında.</p></div>
+   <div class="intro-progress"><strong id="heroPercent">0%</strong><span>Genel ilerleme</span><div class="progress-track"><span id="heroBar"></span></div></div>
+  </div>
+ </section>
+ <nav class="mode-nav" aria-label="Çalışma görünümleri">
+  <button type="button" class="mode-btn active" data-mode="units" aria-current="page">Üniteler</button>
+  <button type="button" class="mode-btn" data-mode="review">Tekrar listem <span id="reviewCount">0</span></button>
+  <button type="button" class="mode-btn" data-mode="help">Nasıl kullanılır?</button>
+ </nav>
+ <div id="app" aria-live="polite">
+  <section class="loading"><p>Üniteler yükleniyor…</p></section>
+ </div>
+ <footer class="page-footer"><span>AYDA Dil Akademisi · A2 Öğrenci Çalışma Kitabı</span><span>24 ünite · 576 görev</span></footer>
+</main>
+<dialog id="videoDialog" class="video-dialog" aria-label="Ders videosu"><div class="dialog-head"><strong id="videoLabel">Ders videosu</strong><button type="button" class="icon-close" id="closeVideo" aria-label="Videoyu kapat">✕</button></div><div id="videoBody"></div></dialog>
+<div class="toast" id="toast" aria-live="polite" role="status"></div>
+<noscript>Bu çalışma kitabını kullanmak için JavaScript etkin olmalıdır.</noscript>
+</body>
+</html>
