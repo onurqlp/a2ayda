@@ -1,0 +1,32 @@
+import { chromium } from "playwright";
+const browser=await chromium.launch({headless:true,args:["--no-sandbox"]});
+let failed=false;
+for(const viewport of [{width:1280,height:800},{width:390,height:844},{width:320,height:700}]){
+ const page=await browser.newPage({viewport});
+ const errors=[];
+ page.on("pageerror",e=>errors.push(String(e)));
+ await page.goto("http://127.0.0.1:8765/express/",{waitUntil:"domcontentloaded"});
+ await page.locator(".unit-card").first().waitFor({timeout:15000});
+ const count=await page.locator(".unit-card").count();
+ if(count!==24)throw new Error("Expected 24 A2 units, got "+count);
+ await page.locator(".unit-card").first().click();
+ await page.locator(".q-picker button").first().waitFor();
+ const questions=await page.locator(".q-picker button").count();
+ if(questions!==24)throw new Error("Expected 24 tasks per unit, got "+questions);
+ await page.locator("[data-hint]").click();
+ if(!await page.locator(".question .feedback").count())throw new Error("Turkish hint panel did not open");
+ await page.locator("[data-hint]").click();
+ await page.locator(".choice").first().click();
+ await page.locator("[data-check]").click();
+ if(!await page.locator(".question .feedback").count())throw new Error("Answer feedback did not open");
+ await page.locator('[data-q="2"]').click();
+ await page.locator("#studentAnswer").fill("Testantwort");
+ await page.locator("[data-check]").click();
+ await page.locator(".question .feedback").waitFor();
+ const width=await page.evaluate(()=>document.documentElement.scrollWidth-window.innerWidth);
+ if(width>3)throw new Error("Horizontal overflow at "+viewport.width+" by "+width+"px");
+ if(errors.length)throw new Error("Browser JS errors: "+errors.join("; "));
+ console.log("PASS",viewport.width+"x"+viewport.height,"24 units, 24 tasks, hints, grading, responsive");
+ await page.close();
+}
+await browser.close();
