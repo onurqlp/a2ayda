@@ -10,6 +10,9 @@ on:
       - "parity.js"
       - "ayda-brand.js"
       - "scripts/check-a2-integrity.mjs"
+      - "scripts/test-a2-express.mjs"
+      - "express/**"
+      - "a2-express-shortcut.js"
       - ".github/workflows/a2-preview-smoke.yml"
   workflow_dispatch:
 permissions:
@@ -25,6 +28,8 @@ jobs:
           node-version: "22"
       - name: Verify original 24 units, 576 exercises, 72 videos and safe preview
         run: node scripts/check-a2-integrity.mjs
+      - name: Check Express JavaScript syntax
+        run: node --check express/express.js && node --check a2-express-shortcut.js
       - name: Install Playwright and Chromium
         run: |
           npm install --no-save playwright
@@ -38,6 +43,7 @@ jobs:
           done
           node preview/smoke-test.mjs
           A2_TEST_ROOT=1 node preview/smoke-test.mjs
+          node scripts/test-a2-express.mjs
       - name: Save device screenshots
         uses: actions/upload-artifact@v4
         if: always()
