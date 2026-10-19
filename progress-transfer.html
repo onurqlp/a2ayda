@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="tr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>AYDA A2 — Eski İlerlemeyi Aktar</title>
+<style>body{font:16px/1.5 system-ui;background:#f4f7fb;color:#102541;min-height:100vh;margin:0;display:grid;place-items:center}.card{background:#fff;border:1px solid #dde5ed;border-radius:18px;padding:26px;width:min(450px,calc(100% - 48px));box-shadow:0 12px 38px #10254115}h1{font-size:23px;margin:0 0 12px}p{color:#58697c}button{background:#102541;color:#fff;border:0;min-height:48px;padding:12px 18px;width:100%;border-radius:10px;cursor:pointer;font:750 14px system-ui}#status{font-size:13px;font-weight:700}</style>
+</head><body><main class="card"><h1>AYDA A2 · Eski ilerlemeni aktar</h1><p>Bu sayfayı eski AYDA A2 çalışma kayıtlarını yeni adrese taşımak için kullan. Sadece alıştırma ilerlemesi aktarılır; giriş şifreleri aktarılmaz.</p><button id="transfer" type="button">İlerlemeyi AYDA sitesine gönder</button><p id="status" role="status" aria-live="polite"></p></main>
+<script>
+(function(){
+ 'use strict';
+ const keyMain='ayda_a2_progress_v2',keyExpress='ayda_a2_express_progress_v1';
+ const status=document.getElementById('status');
+ document.getElementById('transfer').addEventListener('click',function(){
+   if(!window.opener){status.textContent='Bu pencereyi AYDA A2 sayfasındaki aktarım bağlantısıyla açın.';return;}
+   const data={protocol:'AYDA_A2_PROGRESS_TRANSFER_V1'};
+   let count=0;
+   for(const [key,label] of [[keyMain,'main'],[keyExpress,'express']]){
+     try{
+       const raw=localStorage.getItem(key);
+       if(!raw)continue;
+       const parsed=JSON.parse(raw);
+       if(parsed&&typeof parsed==='object'&&!Array.isArray(parsed)&&raw.length<250000){
+         data[label]=raw;count++;
+       }
+     }catch(e){}
+   }
+   if(!count){status.textContent='Bu tarayıcıda eski A2 ilerleme kaydı bulunamadı.';return;}
+   window.opener.postMessage(data,'https://www.aydadil.com');
+   status.textContent='İlerleme bilgileri gönderildi. Yeni AYDA sayfasına dönerek kontrol edin.';
+ });
+})();
+</script></body></html>
