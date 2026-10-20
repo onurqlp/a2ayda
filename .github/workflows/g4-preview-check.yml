@@ -1,0 +1,42 @@
+name: G4 A2 preview browser check
+on:
+  push:
+    branches: [main]
+    paths: ['.github/workflows/g4-preview-check.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - run: python -m pip install selenium
+      - name: Check A2 preview in Chrome
+        run: |
+          mkdir -p /tmp/g4
+          python - <<'PY'
+          import json,time
+          from selenium import webdriver
+          from selenium.webdriver.chrome.options import Options
+          o=Options()
+          for a in ['--headless=new','--no-sandbox','--disable-dev-shm-usage']:o.add_argument(a)
+          d=webdriver.Chrome(options=o)
+          try:
+            for label,w,h in [('desktop',1440,900),('mobile',390,844)]:
+              d.set_window_size(w,h)
+              d.get('https://onurqlp.github.io/a2ayda/g4-onizleme/?v='+str(time.time()))
+              time.sleep(5)
+              x=d.execute_script("""const l=document.querySelector('.g4-brand img');return{title:document.title,header:!!document.querySelector('.g4-corporate'),logo:!!l&&l.complete&&l.naturalWidth>0,login:!!document.querySelector('#aydaPasswordInput'),app:!!document.querySelector('#app'),code:!!document.querySelector('#aydaProtectedContent'),overflow:document.documentElement.scrollWidth-window.innerWidth,error:document.querySelector('#aydaLoginMessage')?.textContent}""")
+              print(json.dumps({'screen':label,'result':x},ensure_ascii=False),flush=True)
+              d.save_screenshot('/tmp/g4/'+label+'.png')
+              assert x['header'] and x['logo'] and x['login'] and x['app'] and x['code'] and x['overflow']<=4
+            print('G4_A2_PREVIEW_VERIFIED',flush=True)
+          finally:d.quit()
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: g4-preview-browser-images
+          path: /tmp/g4/*.png
+          retention-days: 7
