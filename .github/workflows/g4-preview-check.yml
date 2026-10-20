@@ -27,10 +27,10 @@ jobs:
               d.set_window_size(w,h)
               d.get('https://onurqlp.github.io/a2ayda/g4-onizleme/?v='+str(time.time()))
               time.sleep(7)
-              x=d.execute_script("""const l=document.querySelector('.g4-brand img');return{title:document.title,header:!!document.querySelector('.g4-corporate'),logo:!!l&&l.complete&&l.naturalWidth>0,login:!!document.querySelector('#aydaPasswordInput'),app:!!document.querySelector('#app'),code:!!document.querySelector('#aydaProtectedContent'),overflow:document.documentElement.scrollWidth-window.innerWidth,error:document.querySelector('#aydaLoginMessage')?.textContent}""")
+              x=d.execute_script("""const l=document.querySelector('.g4-brand img');return{title:document.title,header:!!document.querySelector('.g4-corporate'),logo:!!l&&l.complete&&l.naturalWidth>0,login:!!document.querySelector('#aydaPasswordInput'),app:!!document.querySelector('#app'),code:!!document.querySelector('#aydaProtectedContent'),logoCount:document.querySelectorAll('#aydaProtectedContent .brand-button img').length,visibleLogoCount:[...document.querySelectorAll('#aydaProtectedContent .brand-button img')].filter(e=>getComputedStyle(e).display!=='none').length,overflow:document.documentElement.scrollWidth-window.innerWidth,error:document.querySelector('#aydaLoginMessage')?.textContent}""")
               print(json.dumps({'screen':label,'result':x},ensure_ascii=False),flush=True)
               d.save_screenshot('/tmp/g4/'+label+'.png')
-              assert x['header'] and x['logo'] and x['login'] and x['app'] and x['code'] and x['overflow']<=4
+              assert x['header'] and x['logo'] and x['login'] and x['app'] and x['code'] and x['overflow']<=4 and x['visibleLogoCount']==1
             print('G4_A2_PREVIEW_VERIFIED',flush=True)
           finally:d.quit()
           PY
