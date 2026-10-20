@@ -48,7 +48,13 @@ assert.ok(approvedHtml.includes("https://onurqlp.github.io/ayda-pass/access-cont
 const root=read("index.html").toString("utf8");
 const expressLink='    <script defer src="./a2-express-shortcut.js"></script>\n';
 assert.equal(root.split(expressLink).length,2,"A2 Express shortcut must appear exactly once.");
-const approvedRoot=root.replace(expressLink,"");
+const normalizedOfficialRoot=root
+ .replace('<title>AYDA A2 | Öğren · Video · Alıştırma</title>','<title>AYDA A2 | Öğren · Video · Alıştırma · Önizleme</title>')
+ .replace(/\s*<style id="a2-canonical-brand-fix">[\s\S]*?<\/style>/,"\n  ")
+ .replace(/<span class="brand-mark( small)?" aria-hidden="true"><img [^>]+><\/span>/g,
+   (_,suffix)=>'<span class="brand-mark'+(suffix||'')+'" aria-hidden="true">AY</span>');
+assert.ok(root.includes('ayda-home-v89-baa791945bb954a30b.png'),"Live A2 approved official logo missing");
+const approvedRoot=normalizedOfficialRoot.replace(expressLink,"");
 if(sha(read("index.html"))!==originalRootSha){
  const expected=approvedHtml.replace('      <meta name="robots" content="noindex,nofollow" />\n',"")
   .replaceAll("../data.js","./data.js")
@@ -61,8 +67,10 @@ if(sha(read("index.html"))!==originalRootSha){
  assert.equal(approvedRoot,expected,"Published A2 must match approved preview except the Express link");
  assert.equal(sha(read("backups/index-before-shared-ui-20261016.html")),originalRootSha,
   "Original A2 live index backup missing");
- for(const path of ["learning.js","learning.css","parity.js","parity.css","ayda-brand.js"])
+ for(const path of ["learning.js","learning.css","parity.js","parity.css"])
   assert.deepEqual(read(path),read("preview/"+path),"Live UI and tested preview differ: "+path);
+ const canonicalBrand=read("ayda-brand.js").toString("utf8");
+ assert.ok(canonicalBrand.includes("https://www.aydadil.com/wp-content/uploads/2026/10/ayda-home-v89-baa791945bb954a30b.png"),"Live A2 official logo data missing");
 }
 console.log("PASS: original A2 course, 24 units, 576 questions, 72 videos, passwords, progress are protected.");
 console.log("PASS: shared AYDA A1/B1 design files and safe preview verified.");
