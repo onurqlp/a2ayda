@@ -27,6 +27,18 @@
     <script defer src="../ayda-brand.js"></script>
     <script defer src="../learning.js?v=20261016-a2u1"></script>
     <script defer src="../parity.js?v=20261016-a2b1"></script>
+    <script>
+    /* G4: The existing brand image is official; suppress parity.js duplicate logo only. */
+    document.addEventListener('DOMContentLoaded',()=>{
+      const reconcile=()=>{
+        const duplicate=document.getElementById('a2AYDABrand');
+        if(duplicate)duplicate.remove();
+      };
+      reconcile();
+      const header=document.querySelector('#aydaProtectedContent .header-inner');
+      if(header)new MutationObserver(reconcile).observe(header,{childList:true,subtree:true});
+    });
+    </script>
     <script defer src="../a2-express-shortcut.js"></script>
   <style id="a2-canonical-brand-fix">.brand-mark:has(img),.brand-logo:has(img){display:flex!important;align-items:center!important;justify-content:center!important;background:transparent!important;color:inherit!important;box-shadow:none!important;border:0!important;border-radius:0!important;min-width:0!important;width:auto!important;height:auto!important;min-height:45px!important;padding:0!important}.brand-mark img,.brand-logo img{display:block!important;width:134px!important;max-width:46vw!important;height:auto!important;object-fit:contain!important}.login-brand-row .brand-mark:has(img){width:150px!important;max-width:65vw!important}@media(max-width:650px){.brand-mark img,.brand-logo img{width:119px!important;max-width:40vw!important}}</style><style id="g4-a2-corporate">
 :root{--g4-navy:#234078;--g4-dark:#172b52;--g4-line:#dfe7f2;--g4-bg:#f6f8fc}
